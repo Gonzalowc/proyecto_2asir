@@ -1,4 +1,4 @@
-/* const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3').verbose();
 
 // Open database
 let db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE , (err) => {
@@ -7,8 +7,8 @@ let db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE , (e
     }
     console.log('connect to the in-memory SQLite database.');
 });
- */
-/* db.serialize(() => {
+
+db.serialize(() => {
     db.each('select * from cliente', (err, row) => {
         if(err) {
             console.error(err.message);
@@ -21,6 +21,6 @@ let db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE , (e
             "\n" + row.direccion +
             "\n" + row.usuario_id )
     })
-}) */
+})
 
 
