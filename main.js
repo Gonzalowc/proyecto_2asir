@@ -1,3 +1,4 @@
+// init electron
 const electron = require('electron')
 const {app, BrowserWindow} = electron
 
@@ -12,5 +13,6 @@ function createWindow(){
         slashes: true
     }))
 }
-
 app.on('ready', createWindow)
+
+//===========final open electron===========
