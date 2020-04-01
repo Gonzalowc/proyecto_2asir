@@ -2,14 +2,23 @@
   "name": "proyecto",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "postinstall": "install-app-deps"
   },
   "author": "Gonzalo Waack Carneado",
   "license": "ISC",
+  "dependencies": {
+    "electron": "^8.1.1",
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "mysql": "^2.18.1",
+    "sqlite3": "^4.1.1"
+  },
   "devDependencies": {
-    "electron": "^8.1.1"
+    "electron-builder": "^22.4.1",
+    "electron-rebuild": "^1.10.1"
   }
 }

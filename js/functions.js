@@ -24,7 +24,7 @@ document.querySelector('#btnNextPass').onclick = function(){
         nextLayout('#divEmail','#divPassword');
     }
 }
-
+//Init session
 document.querySelector('#emailUser').onkeyup = function(){
     const emailUser = document.querySelector('#emailUser').value;
     const alertEmailLogin = document.querySelector('#alertEmailLogin');
@@ -41,19 +41,7 @@ document.querySelector('#emailUser').onkeyup = function(){
 document.querySelector('#btnPrev').onclick = function(){
     prevLayout('#divPassword', '#divEmail');
 }
-document.querySelector('#btnLogin').onclick = function(){
-    const strEmailUser = document.querySelector('#emailUser').value;
-    const strPassUser = document.querySelector('#passUser').value;
-    const alertPass = document.querySelector('#alertPass');
 
-    if(strPassUser == "" || strEmailUser == ""){
-        alertPass.innerHTML = '<p style="color: red;">Escriba su contraseña.</p>';
-        alertPass.style.display = 'block';
-    }else{
-        alertPass.style.display = 'none';
-        alert('Usuario: '+strEmailUser+' - '+'Contraseña: '+ strPassUser);
-    }
-}
 document.querySelector('#linkCreateAccount').onclick = function(e){
     e.preventDefault();
     nextLayout('#divEmail', '#divRegister');
@@ -63,7 +51,7 @@ document.querySelector('#btnNextEmail').onclick = function(){
     prevLayout('#divRegister', '#divEmail');
 }
 
-document.querySelector('#btnRegister').onclick = function(){
+/* document.querySelector('#btnRegister').onclick = function(){
     const nameUser = document.querySelector('#nameUser').value;
     const emailNewUser = document.querySelector('#emailNewUser').value;
     const passNewUser = document.querySelector('#passNewUser').value;
@@ -76,7 +64,7 @@ document.querySelector('#btnRegister').onclick = function(){
         alertRegister.style.display = 'none';
         alert("Registar Usuario");
     }
-}
+} */
 
 document.querySelector('#linkRecoveryPass').onclick = function(e){
     e.preventDefault();
