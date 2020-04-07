@@ -51,21 +51,6 @@ document.querySelector('#btnNextEmail').onclick = function(){
     prevLayout('#divRegister', '#divEmail');
 }
 
-/* document.querySelector('#btnRegister').onclick = function(){
-    const nameUser = document.querySelector('#nameUser').value;
-    const emailNewUser = document.querySelector('#emailNewUser').value;
-    const passNewUser = document.querySelector('#passNewUser').value;
-    const alertRegister = document.querySelector('#alertRegister');
-
-    if(nameUser == "" || emailNewUser == "" || passNewUser == ""){
-        alertRegister.innerHTML = '<p style="color: red;">Todos los datos son obligatorios</p>';
-        alertRegister.style.display = 'block';
-    }else{
-        alertRegister.style.display = 'none';
-        alert("Registar Usuario");
-    }
-} */
-
 document.querySelector('#linkRecoveryPass').onclick = function(e){
     e.preventDefault();
     nextLayout('#divPassword', '#divRecoveryPass');

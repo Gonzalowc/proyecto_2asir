@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Expires" content="0">
+    
     <meta chartset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <script src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Login | Sistema Facturación</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    
+    <script type="text/javascript">
+             
+      </script>
 </head>
 <body>
 
@@ -30,7 +36,7 @@
                 </div>
                 <h2>Escribir contraseña</h2>
                 <div id="alertPass" style="display: none;"></div>
-                <input type="password" id="passUser" name="passUser" placeholder="Contraseña">
+                <input type="password" id="passUser" name="passUser" placeholder="Contraseña" required>
                 <label><input type="checkbox" name="sessionTrue" value="True">Mantener la sesión iniciada</label>
                 <a href="#" id="linkRecoveryPass">¿Olvidó su contraseña?</a>
                 <div class="divButton">
@@ -41,13 +47,13 @@
                 <h2>Crear cuenta</h2>
                 <div id="alertRegister" style="display: none;"></div>
                 <div>
-                    <input type="text" id="nameUser" name="nameUser" value="" placeholder="Nombre">
+                    <input type="text" id="nameUser" name="nameUser" value="" placeholder="Nombre" required>
                 </div>
                 <div>
-                    <input type="email" id="emailNewUser" name="EmailNewUser" value="" placeholder="Correo electrónico">
+                    <input type="email" id="emailNewUser" name="EmailNewUser" value="" placeholder="Correo electrónico" required>
                 </div>
                 <div>
-                    <input type="password" id="passNewUser" name="passNewUser" value="" placeholder="Contraseña">
+                    <input type="password" id="passNewUser" name="passNewUser" value="" placeholder="Contraseña" required>
                 </div>
                 <div class="divBtnAction">
                     <button type="button" id="btnNextEmail" class="btnFormLogin">Atras</button>
@@ -70,6 +76,7 @@
 </section>
 <script src="https://kit.fontawesome.com/a46f88c64b.js" crossorigin="anonymous"></script>
 <script src="./js/connection.js"></script>
+
 <script type="text/javascript" src="./js/functions.js"></script>
 </body>
 </html>

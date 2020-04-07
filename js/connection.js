@@ -3,6 +3,23 @@ var sqlite3 = require('sqlite3').verbose();
 var path = require('path');
 //require MySQL
 var mysql = require("mysql");
+//===================================================
+/* ar db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  db.serialize(() => {
+      db.each(`SELECT correo as correo,
+                      clave as clave
+               FROM usuario`, (err, row) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log(row.correo + "\t" + row.clave);
+      });
+    });
+}); */
+//===================================================
 
 var connection = mysql.createConnection({
       host:"localhost",
@@ -28,13 +45,19 @@ var md5 = require('md5');
         });
       });
   }); */
+ 
 //====================Inicio sesion=================
 document.querySelector('#btnLogin').onclick = function(){
     const strEmailUser = document.querySelector('#emailUser').value;
     const strPassUser = document.querySelector('#passUser').value;
     const alertPass = document.querySelector('#alertPass');
     var codePass = md5(strPassUser);
+  //==localstorage====
+  function guardar_sessionStorage(){
 
+    var user = strEmailUser;
+    sessionStorage.setItem("correo", user);
+  }
     if(strPassUser == "" || strEmailUser == ""){
         alertPass.innerHTML = '<p style="color: red;">Escriba su contraseña.</p>';
         alertPass.style.display = 'block';
@@ -56,10 +79,17 @@ connection.connect((err) => {
     if(rows.length>0){
       rows.forEach((row) => {
       if(row.correo == strEmailUser && row.clave == codePass){
-       /* console.log(`${row.correo} ^_^_^ ${row.clave}`); */
+//=============LocalStorage=============================MySQL==============
+guardar_sessionStorage();
+
+//=============final localStorage===============
         window.location="./app/index.html";
-      }
-      
+        connection.end(() => {
+          console.log("connection succesfully closed");
+        });
+      }else{
+          console.log("Usuario o contraseña errónea")
+      }      
     });
     }else {
       alertPass.innerHTML = '<p style="color: red;">Usuario o Contraseña errónea</p>';
@@ -94,23 +124,7 @@ document.querySelector('#btnRegister').onclick = function(){
         alertRegister.style.display = 'block';
     }else{
         alertRegister.style.display = 'none';
-//===========================consulta registrar=========================SQLITE3=================
-var db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE, (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    db.serialize(() => {
-        db.each(`INSERT INTO usuario (nombre, correo, usuario, clave) VALUES (?,?,?,?)`,[nameUser, emailNewUser, name , codePass ], (err) => {
-                    if (err) {
-                      console.error(err.message);
-                    }
-                    
-                });
-                console.log("Usuario añadido");
-            });
-            
-            
-        });
+
 //=====================================================================   
 //==============================Consulta registrar==========================MySQL===============
 
@@ -125,16 +139,25 @@ connection.connect((err) => {
 
     connection.query($queryString, [nameUser, emailNewUser, name , codePass], (err, rows, fields) => {
       if(err){
-        return console.log("An error ocurred with the query", err);
+        return console.log("An error ocurred with the query MySQL", err);
       }
-      return console.log("Usuario añadido");
-
-    });
-
-connection.end(() => {
-  console.log("connection succesfully closed");
+      console.log("Usuario añadido MySQL");
+//===========================consulta registrar=========================SQLITE3=================
+var db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  db.serialize(() => {
+      db.each(`INSERT INTO usuario (nombre, correo, usuario, clave) VALUES (?,?,?,?)`,[nameUser, emailNewUser, name , codePass ], (err) => {
+          if (err) {
+            return console.error(err.message);
+          }
+                  
+      });
+      return console.log("Usuario añadido SQlite3");
+      });  
+  });
 });
-
 //=====================================================================
         
     }
@@ -149,3 +172,4 @@ function fntEmailValidate(email){
         return true;
     }
 }
+

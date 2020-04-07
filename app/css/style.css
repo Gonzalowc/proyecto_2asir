@@ -48,6 +48,9 @@ a{
 	font-family: arial;
 	letter-spacing: 1px;
 }
+a:active{
+	color: lightskyblue;
+}
 span {
     font-family: 'GothamBook';
     letter-spacing: 1px;
@@ -61,7 +64,7 @@ header{
 .header{
 	color: #FFF;
 	background: #0a4661;
-	height: 35px;
+	height: 40px;
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -131,7 +134,7 @@ nav a{
 	border-right: 1px solid #319B8F;
 }
 nav .principal > a{
-    background: url(../images/arrow_bottom.png) no-repeat;
+    background: url(../img/arrow_bottom.png) no-repeat;
     background-position-x: 0%;
     background-position-y: 0%;
     background-size: auto auto;
@@ -319,8 +322,9 @@ table td{
 	border: 0;
 }
 /*==========================PAGINADOR================================*/
-.paginador ul{
-    padding: 35px;
+/* #paginador{
+	width: 50%;
+    padding: 15px;
     list-style: none;
     background:  #fff;
     margin-top: 15px;
@@ -330,6 +334,8 @@ table td{
     display: -o-flex;
 	display: flex;
 	justify-content: center;
+	text-align: center;
+	border-radius: 50px;
 	
 }
 .paginador a, .page_selected{
@@ -342,15 +348,55 @@ table td{
 	width: 30px;
 	border: 0;
 	border-radius: 100%;
-}
-.paginador a:hover{
+}*/
+#paginador a:hover{
 	background: #ddd;
-}
+	padding: 10px;
+	border-radius: 100px;
+	text-decoration:none;
+}/*
 .page_selected{
 	color: #fff;
 	background: #428bca;
 	border: 1px solid #428bca; 
+} */
+#paginador{
+	min-width: 200px;
+	margin: 0 auto;
+	width: 50%;
+    padding: 15px;
+    list-style: none;
+    background: #a2c8ec;
+    margin-top: 15px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	border-radius: 50px;
+	overflow: hidden;
 }
+/* #paginador table{
+	overflow
+} */
+.pag_btn {
+    color: #fff;
+	background: #a2c8ec;
+}
+ 
+.pag_btn_des {
+    color: rgb(200, 200, 200);
+    background-color: rgb(245, 245, 245);
+}
+ 
+.pag_num {
+    color: rgb(78, 50, 50);
+	background-color: rgba(154, 100, 254, 0.377);
+	border-radius: 150px;
+}
+
 /*========================BUSCADOR=========================*/
 .form_search{
 	display: -webkit-flex;
@@ -461,6 +507,10 @@ table td{
 	justify-content: center;
 	align-items: center;
 	background: #fff;
+}
+.logoLogin{
+	width: 50px;
+	vertical-align: middle;
 }
 /*======================Data Update==========================*/
 .data_update{
@@ -575,4 +625,15 @@ table td{
 	padding: 10px;
 	margin: 0 3px;
 	color: #FFF;
+}
+@media (max-width: 750px){
+    .title{
+		display: none;
+        width: 0%;
+        height: 100vh;
+        min-width: 375px;
+	}
+	.image{
+		width: 100%;
+	}
 }

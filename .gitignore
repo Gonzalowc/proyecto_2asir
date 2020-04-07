@@ -1,1 +1,5 @@
 node_modules
+credentials.json
+index.js
+token.json
+app/js/paginador.js

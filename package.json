@@ -13,6 +13,7 @@
   "dependencies": {
     "electron": "^8.1.1",
     "express": "^4.17.1",
+    "googleapis": "^39.2.0",
     "md5": "^2.2.1",
     "mysql": "^2.18.1",
     "sqlite3": "^4.1.1"
