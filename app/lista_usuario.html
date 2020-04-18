@@ -4,8 +4,6 @@
 	<meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	
-	
 	<script src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/all.js"></script>
@@ -25,7 +23,7 @@
 				<span>|</span>
 				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
 					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
-				<img class="photouser" src="img/user.png" alt="Usuario">
+					<a href="editar_localUser.html"><img class="photouser" id="photouser" onerror="this.src='img/user.png'" /></a>
 				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>
@@ -48,15 +46,24 @@
         <h1><i class="fas fa-users"></i> Lista de Usuarios</h1>
         <a href="nuevo_usuario.html" class="btn_new"><i class="fas fa-user-plus"></i> Crear Usuario</a>
 
-        <form id="form_search" action="buscar_usuario.php" method="get" class="form_search">
-            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
-            <button type="submit" class="btn_search"><i class="fas fa-search"></i></button>
+        
+            <!-- <input type="text" name="busqueda" id="busqueda" placeholder="Buscar"> -->
+            
 		</form> 
 		<div id="table_date">
 			
+			
 		</div>
 	<br><br>
-		<div id="paginador"></div>		
+	<span id="actions"></span>
+		<!-- <div id="paginador"><div class="pagination-container">
+			<nav>
+				<ul class="pagination"></ul>
+			</nav>
+		</div></div> -->
+	<div id="imagene">
+
+	</div>
 
 <script type="text/javascript" src="./js/lista_usuario.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>

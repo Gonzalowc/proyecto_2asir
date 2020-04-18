@@ -1,0 +1,122 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <title>Sisteme Ventas</title>
+    <script
+      src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"
+      data-auto-replace-svg="nest"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <h1>
+          <span class="imgage"><img src="../img/login.png" class="logoLogin" alt="logo" /></span>
+          <span class="title">Sistema Facturación</span>
+        </h1>
+        <div class="optionsBar">
+          <p>
+            España,
+            <script>
+              var f = new Date();
+              document.write(
+                f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear()
+              );
+            </script>
+          </p>
+          <span>|</span>
+          <span id="user">
+            <div id="userUsuario">
+              <script type="text/javascript">
+                if (sessionStorage.getItem("usuario")) {
+                  document.getElementById(
+                    "userUsuario"
+                  ).innerHTML = sessionStorage.getItem("usuario");
+                } else {
+                  document.getElementById("userUsuario").innerHTML = "Usuario";
+                }
+              </script>
+            </div>
+            <div id="userRol">
+              <script type="text/javascript">
+                if (sessionStorage.getItem("rol")) {
+                  document.getElementById(
+                    "userRol"
+                  ).innerHTML = sessionStorage.getItem("rol");
+                } else {
+                  document.getElementById("userRol").innerHTML = "Rol";
+                }
+              </script>
+            </div></span>
+            <a href="#"><img class="photouser" id="photouser" onerror="this.src='img/user.png'" /></a>
+          
+          <a id="exit" href="../index.html">
+            <img
+              class="close"
+              src="img/salir.png"
+              alt="Salir del sistema"
+              title="Salir"
+          /></a>
+        </div>
+      </div>
+
+      <!-- Navegation -->
+      <nav>
+        <ul id="navegator"></ul>
+      </nav>
+      <!-- Fin navegation -->
+    </header>
+    <div class="alertModal">
+      <div class="modal">
+        <div class="bodyModal data_update"></div>
+      </div>
+    </div>
+    <!-- fin header -->
+    <section id="container">
+      <h1><i class="fas fa-user-edit"></i> Perfil</h1>
+      <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+      <!-- <div id="imagene" >
+    hola
+</div> -->
+<!-- ///:::::::::::::::::::::.////:::::::::::: -->
+<div id="edit"></div>
+<div id="perfil">
+  <div id="fotoPerfil">
+    <img  id="imgP" class="imgPerfil" onerror="this.src='img/defecto-avatar.jpg'" />
+    
+  </div>
+  <div id="contBtn">
+      <button id="btnPerfil" class="btnPerfil" type="button" href="#">Cambiar Imagen</button>
+  </div>
+  
+  <div id="formPerfil">
+    <h1>Perfil</h1>
+    <label for="Nombre">Nombre</label>
+			<input id="name" name="nombre" value=""></input>
+					<label for="Usuario">Usuario</label>
+						<input id="usuario" name="Usuario" value=""></input>
+					<label for="Correo">Correo</label>
+            <input id="correo" name="Correo" value=""></input>
+          <label for="Rol">Rol</label>
+            <input id="Rol" name="Rol" value="" disabled></input>
+          <label for="passwd">Contraseña</label>
+            <input type="password" id="passwd" name="passwd" value=""></input>
+          <div id="contBtn">
+              <button id="btnSave" class="btnSave" type="button" href="#">Guardar Cambios</button>
+          </div>
+  </div>
+
+</div>
+
+      <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+    </section>
+    <script src="js/editar_localUser.js"></script>
+    <script type="text/javascript" src="./js/header.js"></script>
+  </body>
+</html>

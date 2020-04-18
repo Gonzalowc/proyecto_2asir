@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+	<title>Sisteme Ventas</title>
+	<script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" data-auto-replace-svg="nest"></script>
+</head>
+<body>
+
+<header>
+		<div class="header">
+			<h1><span class="imgage"><img src="../img/login.png" class="logoLogin" alt="logo"></span><span class="title">Sistema Facturación</span> </h1>
+			<div class="optionsBar">
+				<p>España, <script>
+					var f = new Date();
+					document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+					</script></p>
+				<span>|</span>
+				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
+					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
+					<a href="editar_localUser.html"><img class="photouser" id="photouser" onerror="this.src='img/user.png'" /></a>
+				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
+			</div>
+		</div>
+
+		<!-- Navegation -->
+		<nav>
+			<ul id="navegator">
+			</ul>
+		</nav>
+		<!-- Fin navegation -->
+	</header>
+	<div class="alertModal">
+		<div class="modal">
+			<div class="bodyModal data_update"></div>
+		</div>
+	</div>
+<!-- fin header -->
+    <section id="container">
+    <!-- ===============Lista====CLIENTES============ -->
+        <h1><i class="fas fa-users"></i> Lista de Clientes</h1>
+        <a href="nuevo_usuario.html" class="btn_new"><i class="fas fa-user-plus"></i> Crear Cliente</a>
+
+        
+		<div id="table_date">
+			
+			
+		</div>
+	<br><br>
+	<span id="actions"></span>
+	<div id="imagene">
+
+	</div>
+
+<script type="text/javascript" src="./js/lista_cliente.js"></script>
+<script type="text/javascript" src="./js/header.js"></script>
+</body>
+</html>
+    
+
+
