@@ -53,8 +53,14 @@
                 }
               </script>
             </div></span>
-            <a href="#"><img class="photouser" id="photouser" onerror="this.src='img/user.png'" /></a>
-          
+            <a id="editUser"></a>
+              <script>
+                var foto = sessionStorage.getItem("fotoPerfil");
+                var enlace = "";
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
+                    document.querySelector("#editUser").innerHTML = enlace;
+              </script>
+          </a>
           <a id="exit" href="../index.html">
             <img
               class="close"
@@ -91,9 +97,12 @@
     <img  id="imgP" class="imgPerfil" onerror="this.src='img/defecto-avatar.jpg'" />
     
   </div>
-  <div id="contBtn">
+  <div id="contBtn"><br>
       <button id="btnPerfil" class="btnPerfil" type="button" href="#">Cambiar Imagen</button>
   </div>
+  
+    
+  <!-- <button id="btnEnviar">Enviar</button> -->
   
   <div id="formPerfil">
     <h1>Perfil</h1>

@@ -1,9 +1,10 @@
 // Jquery
 var $ = require("jquery");
-
+var Uimg= "http://localhost/proyecto/img/profiles/";
+var Uindex = "http://localhost/proyecto/";
 var idusu = sessionStorage.getItem("idusuario");
 $queryString =
-  "SELECT u.nombre, u.correo, u.usuario, r.rol FROM usuario u JOIN rol r ON u.rol=r.idrol WHERE idusuario= ?";
+  "SELECT u.nombre, u.correo, u.usuario, r.rol, u.fotoPerfil FROM usuario u JOIN rol r ON u.rol=r.idrol WHERE idusuario= ?";
 connection.query($queryString, [idusu], (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
@@ -13,6 +14,8 @@ connection.query($queryString, [idusu], (err, results) => {
   let correo = results[0].correo;
   let usuario = results[0].usuario;
   let rol = results[0].rol;
+  let img = results[0].fotoPerfil;
+  sessionStorage.setItem("fotoPerfil", Uimg+img)
   document.getElementById("name").setAttribute("value", name);
   document.getElementById("usuario").setAttribute("value", usuario);
   document.getElementById("correo").setAttribute("value", correo);
@@ -26,17 +29,17 @@ connection.query($queryString, [idusu], (err, results) => {
     return console.log("An error ocurred with the query", err);
   }
   console.log(
-    "https://drive.google.com/uc?export=view&id=" + results[0].fotoPerfil
+    
   );
 
   document
     .getElementById("imgP")
     .setAttribute(
       "src",
-      "https://drive.google.com/uc?export=view&id=" + results[0].fotoPerfil
+      Uimg + results[0].fotoPerfil
     );
 });
-/*<img src='http://drive.google.com/uc?export=view&id=' + codigo alt="Usuario"'/>*/
+
 
 $(".btnPerfil").click(function () {
   var recuperar = "";
@@ -44,50 +47,45 @@ $(".btnPerfil").click(function () {
   recuperar += '   <div class="alertModal">';
   recuperar += '   	<div class="modal">';
   recuperar += '   		<div id="bodyModal" class="bodyModal data_update"></div>';
-  recuperar += "   	</div>";
-  recuperar += "   </div>";
+  recuperar += '   	</div>';
+  recuperar += '   </div>';
   recuperar += '   <div id="bodyEdit" style="width: 800px; height: 35vh;">';
-  recuperar += "      <h1>Cambiar imagen</h1>";
-  recuperar += '      <label for="Uri">URL Drive</label>';
+  recuperar += '      <h1>Cambiar imagen</h1><form id="formulario">';
   recuperar +=
-    '      <input type="text" id="Uri" name="Uri" placeholder="URL"></input>';
+    '      <input id="inputFile" name="inputFile" type="file">';
   recuperar += '      <div id="buttons">';
   recuperar += '   	    <button type="button" class="btn_cancel">Atrás</button>';
   recuperar +=
     '   	    <button type="button" class="btn_save">Restaurar</button>';
-  recuperar += "      </div> ";
-  recuperar += "   </div>";
-  recuperar += "</section>";
+  recuperar += '      </div> ';
+  recuperar += '   </div>';
+  recuperar += '</section>';
   document.getElementById("contBtn").innerHTML = recuperar;
   $(".btn_cancel").click(function () {
     location.reload();
   });
 
   $(".btn_save").click(function () {
-    var ul = "";
-    console.log("URL: " + ul);
-    var uri = document
-      .getElementById("Uri")
-      .value.replace(
-        /https:\/\/drive\.google\.com\/file\/d\/(.*?)\/.*?\?usp=sharing/g,
-        "$1"
-      );
-
-    var idusu = sessionStorage.getItem("idusuario");
-    $queryString = "UPDATE usuario set fotoPerfil=? where idusuario= ?";
-
-    connection.query($queryString, [uri, idusu], (err, results) => {
-      if (err) {
-        return console.log("An error ocurred with the query", err);
-      }
-      if (results) {
-        sessionStorage.setItem("fotoPerfil", result[0].fotoPerfil);
-        location.reload();
-      }
-    });
+   //::::::::::::::::::::::::::::::::::::::::  
+const inputFile = document.querySelector("#inputFile");
+    if (inputFile.files.length > 0) {
+        let formData = new FormData();
+        formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
+        fetch(Uindex+"index.php?id="+idusu, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(respuesta => respuesta.text())
+            .then(decodificado => {
+                console.log(decodificado);
+            });
+            location.reload();
+    } else {
+        // El usuario no ha seleccionado archivos
+        alert("Selecciona un archivo");
+    }
+  //:::::::::::::::::::::::::::::::::::::::: 
   });
-});
-
 $(".btnSave").click(function () {
   var idusu = sessionStorage.getItem("idusuario");
   var name = document.getElementById("name").value;
@@ -154,4 +152,5 @@ $(".btnSave").click(function () {
       );
     });
   }
-});
+})
+  })

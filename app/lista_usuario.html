@@ -23,7 +23,14 @@
 				<span>|</span>
 				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
 					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
-					<a href="editar_localUser.html"><img class="photouser" id="photouser" onerror="this.src='img/user.png'" /></a>
+					<a id="editUser" href="editar_localUser.html"></a>
+              <script>
+                var foto = sessionStorage.getItem("fotoPerfil");
+                var enlace = "";
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
+                    document.querySelector("#editUser").innerHTML = enlace;
+              </script>
+          </a>
 				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>

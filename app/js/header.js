@@ -28,7 +28,7 @@ html += '<li id="principal2" class="principal">';
 html += '<a href="#"><i class="fas fa-users"></i> Clientes</a>';
 html += "<ul>";
 html +=
-  '<li><a href="ejemplo.html"><i class="fas fa-user-plus"></i> Nuevo Cliente</a></li>';
+  '<li><a href="nuevo_cliente.html"><i class="fas fa-user-plus"></i> Nuevo Cliente</a></li>';
 html +=
   '<li><a href="lista_cliente.html"><i class="fas fa-users"></i> Lista de Clientes</a></li>';
 html += "</ul></li>";

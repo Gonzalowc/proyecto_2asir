@@ -4,16 +4,17 @@ var dt = require("datatables.net")(window, $);
 //Paginador
 var jefe = sessionStorage.getItem("idusuario");
 //==================listar usuarios
-function timeoutclick(){
+function timeoutclick() {
   click();
-};
+}
 var list_table = "";
-if(sessionStorage.getItem("rol") == "SuperAdmin"){
-  $queryString ='SELECT idcliente, DNI, nombre, telefono, email, direccion, usuario_id FROM cliente  WHERE estatus=? ORDER BY idcliente'
-  jefe = 1;
-}else{
+if (sessionStorage.getItem("rol") == "SuperAdmin") {
   $queryString =
-  'SELECT idcliente, DNI, nombre, telefono, direccion, email FROM cliente WHERE estatus=1 and usuario_id = ? ORDER BY usuario_id';
+    "SELECT idcliente, DNI, nombre, telefono, email, direccion, usuario_id FROM cliente  WHERE estatus=? ORDER BY idcliente";
+  jefe = 1;
+} else {
+  $queryString =
+    "SELECT idcliente, DNI, nombre, telefono, direccion, email FROM cliente WHERE estatus=1 and usuario_id = ? ORDER BY usuario_id";
 }
 connection.query($queryString, [jefe], (err, results) => {
   if (err) {
@@ -25,7 +26,8 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "<thead>";
   list_table += "<tr><th></th><th></th>";
   list_table += "<th></th><th></th><th></th><th></th>";
-  list_table +='<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th><tr>';
+  list_table +=
+    '<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th><tr>';
   list_table += "<th>ID</th>";
   list_table += "<th>Nombre</th>";
   list_table += "<th>DNI</th>";
@@ -37,20 +39,6 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "</thead>";
   list_table += "<tbody>";
   for (i = 0; i < results.length; i++) {
-    console.log(results);
-    console.log(
-      results[i].idcliente +
-        " - " +
-        results[i].DNI +
-        " - " +
-        results[i].nombre +
-        " - " +
-        results[i].telefono +
-        " - " +
-        results[i].email +
-        " - " +
-        results[i].direccion
-    );
     list_table += "<tr>";
     list_table += "<td>" + results[i].idcliente + "</td>";
     list_table += "<td>" + results[i].nombre + "</td>";
@@ -70,8 +58,7 @@ connection.query($queryString, [jefe], (err, results) => {
   document.getElementById("table_date").innerHTML = list_table;
 });
 
-if(sessionStorage.getItem("rol") === "SuperAdmin"){
-  
+if (sessionStorage.getItem("rol") === "SuperAdmin") {
 }
 
 //buscador+paginador
@@ -84,7 +71,6 @@ function buscador() {
   });
 }
 setTimeout("buscador()", 500);
-
 
 var table = "#tblDatos";
 $("#maxRows").on("change", function () {
@@ -134,12 +120,10 @@ $("#maxRows").on("change", function () {
     });
   });
 });
-function click(){
-  $(document).ready(function() {
-  
-  
-    $(".link_edit").click(function() {
 
+function click() {
+  $(document).ready(function () {
+    $(".link_edit").click(function () {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
       var nombre = $(this).parents("tr").find("td")[1].innerHTML;
@@ -147,77 +131,95 @@ function click(){
       var telefono = $(this).parents("tr").find("td")[3].innerHTML;
       var direccion = $(this).parents("tr").find("td")[4].innerHTML;
       var email = $(this).parents("tr").find("td")[5].innerHTML;
-      console.log(ID+", "+DNI+", "+nombre+", "+telefono+" , "+ direccion);
+      console.log(
+        ID +
+          ", " +
+          DNI +
+          ", " +
+          nombre +
+          ", " +
+          telefono +
+          " , " +
+          direccion +
+          ", " +
+          email
+      );
       var recuperar = "";
-      var roles ="";
+      var roles = "";
 
-      recuperar +='<section id="containerEdit">';
-      recuperar +='<div class="alertModal">';
-	    recuperar +='	<div class="modal">';
-	    recuperar +='		<div id="bodyModal" class="bodyModal data_update"></div>';
-	    recuperar +='	</div>';
-	    recuperar +='</div>';
-			recuperar +='	 <div id="bodyEdit">';
-			recuperar +='		<h2>Editar Usuario</h2>';
-			recuperar +='		<label for="Nombre">Nombre</label>';
-      recuperar +='			<input id="name" name="nombre" value="'+nombre+'"></input>';
-      recuperar +='   <label for="DNI">DNI</label>';
-			recuperar +='			<input id="dni" name="DNI" value="'+DNI+'"></input>';
-			recuperar +='		<label for="telefono">Teléfono</label>';
-			recuperar +='			<input id="telefono" name="telefono" value="'+telefono+'"></input>';
-			recuperar +='		<label for="direccion">Dirección</label>';
-      recuperar +='			<input id="direccion" name="direccion" value="'+direccion+'"></input>';
-      recuperar +='		<label for="email">Email</label>';
-			recuperar +='			<input id="email" name="email" value="'+email+'"></input>';
-      recuperar +='   <label for="password">Contraseña</label>';
-      recuperar +='     <input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
-      recuperar +='   <div id="buttons">';
-			recuperar +='			<button type="button" class="btn_cancel">Atrás</button>';
-			recuperar +='			<button type="button" class="btn_save">Restaurar</button>';	
-			recuperar +='		</div> ';
-			recuperar +='	</div>';
-			recuperar +='</section>';
-    
+      recuperar += '<section id="containerEdit">';
+      recuperar += '	 <div id="bodyEdit">';
+      recuperar += "		<h2>Editar Usuario</h2>";
+      recuperar += '		<label for="Nombre">Nombre</label>';
+      recuperar +=
+        '			<input id="name" name="nombre" value="' + nombre + '"></input>';
+      recuperar += '   <label for="DNI">DNI</label>';
+      recuperar += '			<input id="dni" name="DNI" value="' + DNI + '"></input>';
+      recuperar += '		<label for="telefono">Teléfono</label>';
+      recuperar +=
+        '			<input id="telefono" name="telefono" value="' +
+        telefono +
+        '"></input>';
+      recuperar += '		<label for="direccion">Dirección</label>';
+      recuperar +=
+        '			<input id="direccion" name="direccion" value="' +
+        direccion +
+        '"></input>';
+      recuperar += '		<label for="email">Email</label>';
+      recuperar +=
+        '			<input id="email" name="email" value="' + email + '"></input>';
+      recuperar += '   <label for="password">Contraseña</label>';
+      recuperar +=
+        '     <input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
+      recuperar += '   <div id="buttons">';
+      recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
+      recuperar += '			<button type="button" class="btn_save">Restaurar</button>';
+      recuperar += "		</div> ";
+      recuperar += "	</div>";
+      recuperar += "</section>";
+
       document.getElementById("actions").innerHTML = recuperar;
-      $(".btn_cancel").click(function() {
+      $(".btn_cancel").click(function () {
         location.reload();
       });
-      $(".btn_save").click(function() {
+      $(".btn_save").click(function () {
         var idusu = sessionStorage.getItem("idusuario");
-        var clave = md5(document.getElementById("password").value)
-        $queryString ="SELECT idusuario, clave FROM usuario WHERE idusuario =?";
-        
+        var clave = md5(document.getElementById("password").value);
+        $queryString =
+          "SELECT idusuario, clave FROM usuario WHERE idusuario =?";
+
         connection.query($queryString, [idusu], (err, results) => {
           if (err) {
             return console.log("An error ocurred with the query", err);
           }
-        if(results[0].idusuario == idusu && results[0].clave == clave){
-        var Nombre = document.getElementById("name").value;
-        var DNI = document.getElementById("dni").value;
-        var telefono = document.getElementById("telefono").value;
-        var direccion = document.getElementById("direccion").value;
-        var email = document.getElementById("email").value;
-        $queryString ="UPDATE cliente set DNI=?, nombre=?, telefono=?, direccion=?, email=? where usuario_id= ?";
-        
-        connection.query($queryString, [DNI, Nombre, telefono, direccion, email, ID], (err, results) => {
-          if (err) {
-            return console.log("An error ocurred with the query", err);
+          if (results[0].idusuario == idusu && results[0].clave == clave) {
+            var Nombre = document.getElementById("name").value;
+            var DNI = document.getElementById("dni").value;
+            var telefono = document.getElementById("telefono").value;
+            var direccion = document.getElementById("direccion").value;
+            var email = document.getElementById("email").value;
+            $queryString =
+              "UPDATE cliente set DNI=?, nombre=?, telefono=?, direccion=?, email=? where idcliente= ?";
+
+            connection.query(
+              $queryString,
+              [DNI, Nombre, telefono, direccion, email, ID],
+              (err, results) => {
+                if (err) {
+                  return console.log("An error ocurred with the query", err);
+                }
+                if (results) {
+                  location.reload();
+                }
+              }
+            );
           }
-          if(results){
-            location.reload();
-          }
+        });
       });
-        }
-          var messerror = '<p class="msg_error">Error al actualizar el Usuario</p>';
-          document.getElementById("bodyModal").innerHTML = messerror;
-        
-      }); 
     });
-      
   });
-})}
+}
 setTimeout("click()", 500);
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

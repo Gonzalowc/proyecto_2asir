@@ -8,7 +8,7 @@ var md5 = require("md5");
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-
+var Uimg ="http://localhost/proyecto/img/profiles/"
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -47,7 +47,7 @@ if (
           function guardar_sessionStorage() {
             var rol = row.rol;
             var usuario = row.usuario;
-            var foto = 'https://drive.google.com/uc?export=view&id='+row.fotoPerfil;
+            var foto = Uimg+row.fotoPerfil;
             var iusuario = row.idusuario;
             sessionStorage.setItem("usuario", usuario);
             sessionStorage.setItem("rol", rol);
@@ -65,5 +65,3 @@ if (
     }
   });
 }
-/*  var fotoP = sessionStorage.getItem("fotoPerfil");
-document.getElementById("photouser").setAttribute("src", fotoP); */

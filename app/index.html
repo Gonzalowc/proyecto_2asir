@@ -51,13 +51,15 @@
                   document.getElementById("userRol").innerHTML = "Rol";
                 }
               </script>
-            </div></span><script>
-              var foto = sessionStorage.getItem("fotoPerfil");
-              document.getElementById("photouser").setAttribute('src', 'https://drive.google.com/uc?export=view&id='+foto);
-            </script>
-            <a href="editar_localUser.html"><img class="photouser" src="" oneerror="this.src='img/user.png'"/></a>
-          <!-- <img class="photouser"  src="" alt="Usuario" /> -->
-          
+            </div></span>
+            <a id="editUser" href="editar_localUser.html"></a>
+              <script>
+                var foto = sessionStorage.getItem("fotoPerfil");
+                var enlace = "";
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
+                    document.querySelector("#editUser").innerHTML = enlace;
+              </script>
+          </a>
           <a id="exit" href="../index.html">
             <img
               class="close"
