@@ -797,7 +797,6 @@ font-weight: bolder;
 }
 /* ///////////////////////// */
 #perfil{
-  background-color: red;
   border-radius: 100px;
   width: 80%;
   margin: 0 auto;
@@ -831,33 +830,28 @@ font-weight: bolder;
   width: 97%;
   margin: 10px;
   border-radius: 100px;
-  background-color: grey;
+  background-color: rgb(223, 219, 219);
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 5;
-  border: 2px solid rgb(60, 60, 255);
+  border: 2px solid rgb(61, 61, 121);
 }
 .button{
-  /* justify-content: center;
-  align-content: stretch; */
-  /* margin: 0 auto; */
-  /* padding: 10px; */
+  
   background-color: green;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
   border-radius: 100px;
-  /* width: 170px;
-  height: 5vh; */
 }
 .btnPerfil{ 
   margin-left: 20%;
   margin-top: -60px;
   width: 50%;
   padding: 10px;
-  background-color: #428bca;
+  background-color: #7db6e9;
   border-radius: 100px;
 }
 .btnSave{ 
@@ -865,7 +859,7 @@ font-weight: bolder;
   margin-top: 20px;
   width: 30%;
   padding: 10px;
-  background-color: #046624;
+  background-color: #a5ecbd;
   border-radius: 100px;
 }
 #formPerfil label,
@@ -874,7 +868,7 @@ font-weight: bolder;
   margin-left: 15%;
   margin-right: 15%;
   font-weight: bolder;
-  color: #193ee7;
+  color: #8797e2;
   font-size: 16pt;
   font-family: "GothamBook";
   margin-bottom: 2vh;

@@ -88,28 +88,26 @@
     <section id="container">
       <!-- ===============New====USUARIO============ -->
       <div class="form_register">
-        <h1><i class="fas fa-user-plus"></i> Registro cliente</h1>
+        <h1><i class="fas fa-user-plus"></i> Registro Proveedor</h1>
         <hr>
-        <form action="#">
+        
+        <form action="" method="post">
           <div id="alert" class="alert"></div>
-          <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo">
-          <label for="dni" >DNI </label>
-            <input type="dni" name="dni" id="dni" placeholder="DNI">
+          <label for="proveedor">Proveedor</label>
+          <input type="text" name="proveedor" id="proveedor" placeholder="Nombre Empresa">
+          <label for="contacto" >Contacto </label>
+          <input type="text" name="contacto" id="contacto" placeholder="Nombre Contacto">
           <label for="telefono">Teléfono</label>
-            <input type="number" name="telefono" id="telefono" placeholder="Teléfono">
+          <input type="number" name="telefono" id="telefono" placeholder="Teléfono">
           <label for="direccion">Dirección</label>
-            <input type="text" name="direccion" id="direccion" placeholder="Dirección Completa">
+          <input type="text" name="direccion" id="direccion" placeholder="Dirección Empresa">
           <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Correo Electrónico">
-          <button type="submit" class="btn_save"><i class="fas fa-save"></i> Registrar Cliente</button>
-        </form>
-      </div>
+          <input type="text" name="email" id="email" placeholder="Correo Electrónico">
+          <button type="submit" class="btn_save"><i class="fas fa-save"></i> Guardar Proveedor</button>
+        </form> 
+   </div>
     </section>
-    <script type="text/javascript" src="./js/nuevo_cliente.js"></script>
-
-    
+    <script type="text/javascript" src="./js/nuevo_proveedor.js"></script>
     <script type="text/javascript" src="./js/header.js"></script>
-
   </body>
 </html>

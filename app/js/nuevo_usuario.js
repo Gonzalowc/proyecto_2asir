@@ -12,20 +12,15 @@ connection.query($queryString, (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
   }
-  var i= 0;
-  if(sessionStorage.getItem("rol") == "SuperAdmin"){
-    var i = 0;
+  var i= sessionStorage.getItem("idrol");
+  if(i == 1){
+    i= 0;
   }
-  if(sessionStorage.getItem("rol") == "Administrador"){
-    var i = 1;
+  if(i == 2){
+    i = 1;
   }
-  if(sessionStorage.getItem("rol") == "Vendedor"){
-    var i = 3;
-  }
-  else{
-    var i= 2;
-  }
-
+  
+  console.log(i);
   let rol = "";
   for (i; i < results.length; i++) {
     console.log(results[i].rol+" - "+results[i].idrol)
@@ -65,11 +60,13 @@ document.querySelector("#submit").onclick = function (e) {
 
   if (name == "" || correo == "" || codePass == "" || !validateEmail) {
     alertRegister.innerHTML =
-      '<p style="color: red;">Todos los datos son obligatorios</p>';
+      '<b><p style="color: red;">Todos los datos son obligatorios</p></b>';
     alertRegister.style.display = "block";
   } else {
     alertRegister.style.display = "none";
-
+    alertRegister.innerHTML =
+      '<b><p style="color: green;">Usuario Añadido Correctamente</p></b>';
+    alertRegister.style.display = "block";
     //=====================================================================
     //==============================Consulta registrar==========================MySQL===============
 

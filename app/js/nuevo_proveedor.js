@@ -1,38 +1,38 @@
 //=================Registrar==============================
-  document.querySelector(".btn_save").onclick = function (e) {
+document.querySelector(".btn_save").onclick = function (e) {
     e.preventDefault();
-    var name = document.getElementById("nombre").value;    
+    var proveedor = document.getElementById("proveedor").value;
+    var contacto = document.getElementById("contacto").value;
     var telefono = document.getElementById("telefono").value;
     var direccion = document.getElementById("direccion").value;
     var email = document.getElementById("email").value;
-    var DNI = document.getElementById("dni").value;
     var alertRegister = document.getElementById("alert");
     var idusu = sessionStorage.getItem("idusuario");
     var validateEmail = fntEmailValidate(email); 
   
-    if (name == "" || DNI == "" || direccion == "" || !validateEmail) {
+    if (proveedor == "" || contacto == "" || telefono == "" || email == "" || !validateEmail) {
       alertRegister.innerHTML =
         '<b><p style="color: red;">Todos los datos son obligatorios</p></b>';
       alertRegister.style.display = "block";
     } else {
       alertRegister.style.display = "none";
-      alertRegister.innerHTML =
-        '<b><p style="color: green;">Cliente añadido Correctamente</p></b>';
-      alertRegister.style.display = "block";
-      document.getElementById("nombre").value = "";
-      document.getElementById("dni").value = "";
+      document.getElementById("proveedor").value = "";
+      document.getElementById("contacto").value = "";
       document.getElementById("telefono").value = "";
       document.getElementById("direccion").value = "";
       document.getElementById("email").value = "";
+      alertRegister.innerHTML =
+        '<b><p style="color: green;">Proveedor Añadido correctamente</p></b>';
+      alertRegister.style.display = "block";
       //=====================================================================
       //==============================Consulta registrar==========================MySQL===============
   
       $queryString =
-        "INSERT INTO cliente (DNI, nombre, telefono, direccion, usuario_id, email) VALUES (?,?,?,?,?,?)";
+        "INSERT INTO proveedor (proveedor, contacto, telefono, direccion, email, usuario_id) VALUES (?,?,?,?,?,?)";
   
       connection.query(
         $queryString,
-        [DNI, name, telefono, direccion, idusu, email],
+        [proveedor, contacto, telefono, direccion, email, idusu],
         (err) => {
           if (err) {
             return console.log("An error ocurred with the query MySQL", err);

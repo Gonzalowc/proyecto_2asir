@@ -3,6 +3,8 @@ var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
 //:::
 
+
+//
 var html = "";
 html += '<li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>';
 if (
@@ -31,6 +33,8 @@ html +=
   '<li><a href="nuevo_cliente.html"><i class="fas fa-user-plus"></i> Nuevo Cliente</a></li>';
 html +=
   '<li><a href="lista_cliente.html"><i class="fas fa-users"></i> Lista de Clientes</a></li>';
+html +=
+  '<li><a href="recuperar_cliente.html"><i class="fas fa-users"></i> Recuperar Clientes</a></li>';
 html += "</ul></li>";
 
 if (
@@ -40,10 +44,12 @@ if (
   html += '<li id="principal3" class="principal">';
   html += '<a href="#"><i class="fas fa-truck"></i> Proveedores</a>';
   html += "<ul>";
+  if(sessionStorage.getItem("idrol")<3){
+    html +=
+    '<li><a href="nuevo_proveedor.html"><i class="fas fa-user-plus"></i> Nuevo Proveedor</a></li>';
+  }
   html +=
-    '<li><a href="registro_proveedor.html"><i class="fas fa-user-plus"></i> Nuevo Proveedor</a></li>';
-  html +=
-    '<li><a href="lista_proveedores.html"><i class="fas fa-truck"></i> Lista de Proveedores</a></li>';
+    '<li><a href="lista_proveedor.html"><i class="fas fa-truck"></i> Lista de Proveedores</a></li>';
   html += "</ul>";
   html += "</li>";
 }
@@ -58,19 +64,16 @@ if (
   html +=
     '<li><a href="https://drive.google.com/drive/u/0/my-drive"><i class="fas fa-cart-plus"></i> Nuevo Producto</a></li>';
   html +=
-    '<li><a href="lista_productos.html"><i class="fas fa-barcode"></i> Lista de Productos</a></li>';
+    '<li><a href="productos.html"><i class="fas fa-barcode"></i> Lista de Productos</a></li>';
   html += "</ul>";
   html += "</li>";
 }
-
 html += '<li id="principal5" class="principal">';
 html += '<a href="#"><i class="fas fa-receipt"></i> Ventas</a>';
-html += "<ul>";
-html +=
-  '<li><a href="https://web.whatsapp.com/"><i class="fas fa-concierge-bell"></i> Nueva Venta</a></li>';
-html +=
-  '<li><a href="#"><i class="fas fa-receipt"></i> Lista de Facturas</a></li>';
-html += "</ul></li>";
+html += '<ul>';
+html += '<li><a href="#"><i class="fas fa-concierge-bell"></i> Nueva Venta</a></li>';
+html += '<li><a href="#"><i class="fas fa-receipt"></i> Lista de Facturas</a></li>';
+html += '</ul></li>';
 
 document.getElementById("navegator").innerHTML = html;
 

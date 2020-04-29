@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 });
 
 //················································
-//===============localstorage======functions==========
+//===============sessionStorage======functions==========
 
 if (
   sessionStorage.getItem("usuario") == null ||
@@ -32,7 +32,7 @@ if (
   });
   var emailUser = sessionStorage.getItem("correo");
   $queryString =
-    "SELECT r.rol, u.usuario, u.idusuario, u.fotoPerfil FROM usuario u JOIN rol r ON r.idrol=u.rol  WHERE correo = ?";
+    "SELECT r.rol, u.usuario, u.idusuario, u.fotoPerfil, r.idrol FROM usuario u JOIN rol r ON r.idrol=u.rol  WHERE correo = ?";
 
   connection.query($queryString, [emailUser], (err, rows) => {
     if (err) {
@@ -42,15 +42,17 @@ if (
       rows.forEach((row) => {
         console.log(rows);
         if (row.rol != null || row.usuario != null) {
-          //===============localstorage================
+          //===============sessionStorage================
 
           function guardar_sessionStorage() {
             var rol = row.rol;
             var usuario = row.usuario;
             var foto = Uimg+row.fotoPerfil;
             var iusuario = row.idusuario;
+            var idrol = row.idrol;
             sessionStorage.setItem("usuario", usuario);
             sessionStorage.setItem("rol", rol);
+            sessionStorage.setItem("idrol", idrol);
             sessionStorage.setItem("idusuario", iusuario);
             sessionStorage.setItem("fotoPerfil", foto);
             window.setTimeout("location.reload()", 500);

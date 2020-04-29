@@ -31,7 +31,7 @@ connection.query($queryString, [idusu], (err, results) => {
   console.log(
     
   );
-
+  sessionStorage.setItem("img", results[0].fotoPerfil);
   document
     .getElementById("imgP")
     .setAttribute(
@@ -68,10 +68,11 @@ $(".btnPerfil").click(function () {
   $(".btn_save").click(function () {
    //::::::::::::::::::::::::::::::::::::::::  
 const inputFile = document.querySelector("#inputFile");
+const fotoP = sessionStorage.getItem("img");
     if (inputFile.files.length > 0) {
         let formData = new FormData();
         formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
-        fetch(Uindex+"index.php?id="+idusu, {
+        fetch(Uindex+"index.php?id="+idusu+"&fotoP="+fotoP, {
             method: 'POST',
             body: formData,
         })
@@ -79,13 +80,14 @@ const inputFile = document.querySelector("#inputFile");
             .then(decodificado => {
                 console.log(decodificado);
             });
-            location.reload();
+            /* location.reload(); */
     } else {
         // El usuario no ha seleccionado archivos
         alert("Selecciona un archivo");
     }
   //:::::::::::::::::::::::::::::::::::::::: 
   });
+})
 $(".btnSave").click(function () {
   var idusu = sessionStorage.getItem("idusuario");
   var name = document.getElementById("name").value;
@@ -153,4 +155,3 @@ $(".btnSave").click(function () {
     });
   }
 })
-  })
