@@ -3,6 +3,7 @@ var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
 //Paginador
 var rol = sessionStorage.getItem("idrol");
+var rutaIMG = "http://localhost/proyecto/img/products/";
 //==================listar usuarios
 if(rol > 2){
 document.getElementById("new").style.display = "none"; 
@@ -14,7 +15,7 @@ function timeoutclick() {
 }
 var list_table = "";
   $queryString =
-    "SELECT codproveedor, proveedor, contacto, telefono, direccion, email FROM proveedor  WHERE estatus=1 ORDER BY codproveedor";
+    "SELECT p.codproducto, p.producto, p.descripcion, pd.proveedor, p.precio, p.existencia, p.foto FROM producto p join proveedor pd on p.proveedor = pd.codproveedor WHERE p.estatus=1 ORDER BY codproducto";
 
 connection.query($queryString, (err, results) => {
   if (err) {
@@ -25,35 +26,45 @@ connection.query($queryString, (err, results) => {
   list_table += '<table id="tblDatos">';
   list_table += "<thead>";
   list_table += "<tr><th></th><th></th>";
-  list_table += "<th></th><th></th><th></th><th></th>";
+  list_table += "<th></th><th></th><th></th><th></th><th></th>";
   list_table +=
     '<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th><tr>';
   list_table += "<th>ID</th>";
-  list_table += "<th>Empresa</th>";
-  list_table += "<th>Contacto</th>";
-  list_table += "<th>Teléfono</th>";
-  list_table += "<th>Dirección</th>";
-  list_table += "<th>Email</th>";
+  list_table += "<th>Producto</th>";
+  list_table += "<th>Descripcion</th>";
+  list_table += "<th>Proveedor</th>";
+  list_table += "<th>Precio</th>";
+  list_table += "<th>Existencias</th>";
+  list_table += "<th>Imagen</th>";
   list_table += "<th>Acciones</th>";
   list_table += "</tr>";
   list_table += "</thead>";
   list_table += "<tbody>";
   for (i = 0; i < results.length; i++) {
     list_table += "<tr>";
-    list_table += "<td>" + results[i].codproveedor + "</td>";
+    list_table += "<td>" + results[i].codproducto + "</td>";
+    list_table += "<td>" + results[i].producto + "</td>";
+    list_table += "<td>" + results[i].descripcion + "</td>";
     list_table += "<td>" + results[i].proveedor + "</td>";
-    list_table += "<td>" + results[i].contacto + "</td>";
-    list_table += "<td>" + results[i].telefono + "</td>";
-    list_table += "<td>" + results[i].direccion + "</td>";
-    list_table += "<td>" + results[i].email + "</td>";
+    list_table += "<td>" + results[i].precio + "</td>";
+    list_table += "<td>" + results[i].existencia + "</td>";
+    list_table += '<td><img style="width: 100px; height: 100px;" class="productIMG" src="' + rutaIMG +results[i].foto + '"/></td>';
+    list_table += "<td>";
+    
+    $(document).ready(function(){
+      $(".productIMG").on("error", function(){
+        $(this).attr('src', './img/uploads/img_producto.png')
+      })
+    })
+
     if(sessionStorage.getItem("idrol") == 1 ||sessionStorage.getItem("idrol") == 2){
     list_table +=
-      '<td><a onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
+      '<a onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
       list_table +=
       '<a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
     }else{
       list_table +=
-      '<td><a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
       
     }
     
@@ -63,10 +74,12 @@ connection.query($queryString, (err, results) => {
         }
     list_table += "</td>";
     list_table += "</tr>";
+    console.log(rutaIMG +results[i].foto);
   }
   list_table += "</tbody>";
   list_table += "</table>";
   document.getElementById("table_date").innerHTML = list_table;
+  
 });
 
 if (sessionStorage.getItem("rol") === "SuperAdmin") {
@@ -137,9 +150,10 @@ function click() {
     $(".link_delete").click(function () {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
-      var Empresa = $(this).parents("tr").find("td")[1].innerHTML;
+      var producto = $(this).parents("tr").find("td")[1].innerHTML;
+      var imagen = $(this).parents("tr").find("td")[6].innerHTML;
       
-      console.log(ID + ", " + Empresa);
+      console.log(ID + ", " + producto + ", " + imagen);
       var recuperar = "";
       recuperar += '<section id="containerEdit">';
       recuperar += '<div class="alertModal">';
@@ -148,16 +162,19 @@ function click() {
       recuperar += "	</div>";
       recuperar += "</div>";
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2>Eliminar Proveedor</h2>";
-      recuperar += '		<label for="Nombre">Empresa</label>';
+      recuperar += "		<h2>Eliminar Producto</h2>";
+      recuperar += '		<label for="Nombre">Producto</label>';
       recuperar +=
-        '			<p id="name" name="nombre">' + Empresa + '</p>';
+        '			<p id="name" name="nombre">' + producto + '</p>';
+        recuperar += '		<label for="img">imagen</label>';
+      recuperar +=
+        '			<p id="img" name="img">' + imagen + '</p>';
       recuperar += '<label for="password">Contraseña</label>';
       recuperar +=
         '<input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
       recuperar += '<div id="buttons">';
       recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
-      recuperar += '			<button type="button" class="btn_save">Cambiar</button>';
+      recuperar += '			<button type="button" class="btn_save">Eliminar</button>';
       recuperar += '		</div>';
       recuperar += '	</div>';
       recuperar += '</section>';
@@ -178,7 +195,7 @@ function click() {
           }
           if (results[0].idusuario == idusu && results[0].clave == clave) {
             $queryString =
-              "UPDATE proveedor set estatus = 0 where codproveedor= ?";
+              "UPDATE producto set estatus = 0 where codproducto= ?";
 
             connection.query($queryString, [ID], (err, results) => {
                 if (err) {
@@ -190,62 +207,37 @@ function click() {
               }
             );
           }
-          var messerror =
-            '<p class="msg_error">Error al actualizar el Usuario</p>';
-          document.getElementById("bodyModal").innerHTML = messerror;
         });
       });
     });
     $(".link_edit").click(function () {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
-      var Empresa = $(this).parents("tr").find("td")[1].innerHTML;
-      var DNI = $(this).parents("tr").find("td")[2].innerHTML;
-      var telefono = $(this).parents("tr").find("td")[3].innerHTML;
-      var direccion = $(this).parents("tr").find("td")[4].innerHTML;
-      var email = $(this).parents("tr").find("td")[5].innerHTML;
-      console.log(
-        ID +
-          ", " +
-          DNI +
-          ", " +
-          Empresa +
-          ", " +
-          telefono +
-          " , " +
-          direccion +
-          ", " +
-          email
-      );
+      var producto = $(this).parents("tr").find("td")[1].innerHTML;
+      var precio = $(this).parents("tr").find("td")[4].innerHTML;
+      var cantidad = $(this).parents("tr").find("td")[5].innerHTML;
       var recuperar = "";
 
       recuperar += '<section id="containerEdit">';
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2><i class='fas fa-users-cog'></i> Editar Proveedor</h2>";
-      recuperar += '		<label for="Empresa">Empresa</label>';
+      recuperar += "		<h2>Añadir STOCK</h2>";
+      recuperar += '		<label for="producto">Producto</label>';
       recuperar +=
-        '			<input id="name" name="Empresa" value="' + Empresa + '"></input>';
-      recuperar += '   <label for="DNI">DNI</label>';
-      recuperar += '			<input id="dni" name="DNI" value="' + DNI + '"></input>';
-      recuperar += '		<label for="telefono">Teléfono</label>';
+        '			<input id="producto" name="producto" value="' + producto + '" disabled></input>';
+      recuperar += '   <label for="precio">Precio Nuevo Precio</label>';
+      recuperar += '			<input type="number" min="0" id="precio" name="precio" value="' + precio + '" placeholder="0.00"></input>';
+      recuperar += '		<label for="existencia">Añadir Existencia</label>';
       recuperar +=
-        '			<input id="telefono" name="telefono" value="' +
-        telefono +
+        '			<input id="existencia" name="existencia" value="' +
+        cantidad +
         '"></input>';
-      recuperar += '		<label for="direccion">Dirección</label>';
-      recuperar +=
-        '			<input id="direccion" name="direccion" value="' +
-        direccion +
-        '"></input>';
-      recuperar += '		<label for="email">Email</label>';
-      recuperar +=
-        '			<input id="email" name="email" value="' + email + '"></input>';
       recuperar += '   <label for="password">Contraseña</label>';
       recuperar +=
         '     <input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
       recuperar += '   <div id="buttons">';
       recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
-      recuperar += '			<button type="button" class="btn_save">Restaurar</button>';
+      recuperar += '			<button type="button" class="btn_save">Registrar</button>';
+      recuperar += '			<a type="button" class="btn_ok">Editar Producto</a>';
       recuperar += "		</div> ";
       recuperar += "	</div>";
       recuperar += "</section>";
@@ -265,17 +257,14 @@ function click() {
             return console.log("An error ocurred with the query", err);
           }
           if (results[0].idusuario == idusu && results[0].clave == clave) {
-            var Empresa = document.getElementById("name").value;
-            var DNI = document.getElementById("dni").value;
-            var telefono = document.getElementById("telefono").value;
-            var direccion = document.getElementById("direccion").value;
-            var email = document.getElementById("email").value;
+            var precio = document.getElementById("precio").value;
+            var cantidad = document.getElementById("existencia").value;
             $queryString =
-              "UPDATE cliente set DNI=?, Empresa=?, telefono=?, direccion=?, email=? where idcliente= ?";
+              "CALL actualizar_precio_producto(?,?,?)";
 
             connection.query(
               $queryString,
-              [DNI, Empresa, telefono, direccion, email, ID],
+              [cantidad,precio,ID],
               (err, results) => {
                 if (err) {
                   return console.log("An error ocurred with the query", err);
@@ -288,10 +277,13 @@ function click() {
           }
         });
       });
+      $(".btn_ok").click(function (){
+        localStorage.setItem("idproductChange", ID);
+        console.log(localStorage.getItem("idproductChange"));
+        window.location = "./editar_producto.html";
+      });
     });
   });
 }
 setTimeout("click()", 500);
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -453,12 +453,12 @@ table td {
 .prevPhoto {
   display: flex;
   justify-content: space-between;
-  width: 160px;
-  height: 150px;
-  border: 1px solid #ccc;
+  width: 140px;
+  height: 140px;
+  border: 2px solid #ccc;
   position: relative;
   cursor: pointer;
-  background: url(../images/uploads/user.png);
+  background: url(../img/uploads/img_producto.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

@@ -20,15 +20,10 @@
           <span class="title">Sistema Facturación</span>
         </h1>
         <div class="optionsBar">
-          <p>
-            España,
-            <script>
-              var f = new Date();
-              document.write(
-                f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear()
-              );
-            </script>
-          </p>
+          <p id="pais"></p><p>. <script>
+            var f = new Date();
+            document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+            </script></p>
           <span>|</span>
           <span id="user">
             <div id="userUsuario">

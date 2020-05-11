@@ -17,6 +17,11 @@ var connection = mysql.createConnection({
 });
 
 //················································
+//Pais
+$.getJSON('http://api.wipmania.com/jsonp?callback=?', function (data) {
+    document.getElementById("pais").innerHTML = data.address.country + " ";
+});
+
 //===============sessionStorage======functions==========
 
 if (

@@ -9,11 +9,11 @@ function timeoutclick() {
 }
 if (sessionStorage.getItem("rol") == "SuperAdmin") {
   $queryString =
-    "SELECT COUNT(*) AS total_registro FROM cliente WHERE estatus=?";
+    "SELECT COUNT(*) AS total_registro FROM proveedor WHERE estatus=?";
     vendedor = 0;
 } else {
   $queryString =
-    "SELECT COUNT(*) AS total_registro FROM cliente WHERE estatus=0 and usuario_id = ?";
+    "SELECT COUNT(*) AS total_registro FROM proveedor WHERE estatus=0 and usuario_id = ?";
 }
 
 connection.query($queryString, [vendedor], (err, results) => {
@@ -29,11 +29,11 @@ var list_table = "";
 
 if (sessionStorage.getItem("rol") == "SuperAdmin") {
   $queryString =
-  "SELECT idcliente, DNI, nombre, telefono, email, direccion, usuario_id FROM cliente  WHERE estatus=? ORDER BY idcliente";
+    "SELECT codproveedor, proveedor, contacto, telefono, direccion, email, usuario_id FROM proveedor  WHERE estatus=? ORDER BY codproveedor";
   vendedor = 0;
 } else {
   $queryString =
-  "SELECT idcliente, DNI, nombre, telefono, direccion, email FROM cliente WHERE estatus=0 and usuario_id = ? ORDER BY usuario_id";
+  "SELECT codproveedor, proveedor, contacto, telefono, direccion, email FROM proveedor WHERE estatus=0 and usuario_id = ? ORDER BY codproveedor";
 }
 connection.query($queryString, [vendedor], (err, results) => {
   if (err) {
@@ -53,9 +53,9 @@ connection.query($queryString, [vendedor], (err, results) => {
     list_table +=
         '<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th></tr><tr>';
     list_table += "<th>ID</th>";
-    list_table += "<th>Nombre</th>";
-    list_table += "<th>DNI</th>";
-    list_table += "<th>telefono</th>";
+    list_table += "<th>Proveedor</th>";
+    list_table += "<th>Contacto</th>";
+    list_table += "<th>Telefono</th>";
     list_table += "<th>Dirección</th>";
     list_table += "<th>Email</th>";
     if(sessionStorage.getItem("rol")== "SuperAdmin"){
@@ -67,9 +67,9 @@ connection.query($queryString, [vendedor], (err, results) => {
     list_table += "<tbody>";
     for (i = 0; i < results.length; i++) {
       list_table += "<tr>";
-      list_table += "<td>" + results[i].idcliente + "</td>";
-      list_table += "<td>" + results[i].nombre + "</td>";
-      list_table += "<td>" + results[i].DNI + "</td>";
+      list_table += "<td>" + results[i].codproveedor + "</td>";
+      list_table += "<td>" + results[i].proveedor + "</td>";
+      list_table += "<td>" + results[i].contacto + "</td>";
       list_table += "<td>" + results[i].telefono + "</td>";
       list_table += "<td>" + results[i].direccion + "</td>";
       list_table += "<td>" + results[i].email + "</td>";
@@ -84,6 +84,7 @@ connection.query($queryString, [vendedor], (err, results) => {
       list_table += "</tbody>";
       list_table += "</table>";
       document.getElementById("table_date").innerHTML = list_table;
+      console.log(results);
 });
 
 //==========================Buscador=======================
@@ -191,7 +192,7 @@ function click() {
         /* location.reload(); */
         
         $queryString =
-          "UPDATE cliente set estatus=1 where idcliente= ? and estatus=0";
+          "UPDATE proveedor set estatus=1 where codproveedor= ? and estatus=0";
 
         connection.query($queryString, [ID], (err, results) => {
           if (err) {

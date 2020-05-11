@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
+			<meta http-equiv="Expires" content="0">
+			<meta http-equiv="Last-Modified" content="0">
+			<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+			<meta http-equiv="Pragma" content="no-cache">
+
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -65,21 +71,16 @@
 <!-- fin header -->
     <section id="container">
     <!-- ===============Lista====CLIENTES============ -->
-        <h1><i class="fas fa-users"></i> Lista de Clientes</h1>
-        <a href="nuevo_cliente.html" class="btn_new"><i class="fas fa-user-plus"></i> Crear Cliente</a>
-
-        
-		<div id="table_date">
-			
-			
-		</div>
+        <h1><i class="fas fa-barcode"></i> Lista de Productos</h1>
+        <a href="nuevo_producto.html" id="new" class="btn_new"><i class="fas fa-cart-plus"></i> Nuevo Producto</a>
+		<div id="table_date"><img class="productIMG"></div>
 	<br><br>
 	<span id="actions"></span>
 	<div id="imagene">
 
 	</div>
 
-<script type="text/javascript" src="./js/lista_cliente.js"></script>
+<script type="text/javascript" src="./js/recuperar_producto.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
 
 </body>

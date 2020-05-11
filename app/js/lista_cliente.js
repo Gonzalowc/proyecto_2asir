@@ -158,7 +158,7 @@ function click() {
 
       recuperar += '<section id="containerEdit">';
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2>Editar Usuario</h2>";
+      recuperar += "		 <h2> <i class='fas fa-users-cog'></i> Editar Cliente</h2>";
       recuperar += '		<label for="Nombre">Nombre</label>';
       recuperar +=
         '			<input id="name" name="nombre" value="' + nombre + '"></input>';
@@ -182,7 +182,7 @@ function click() {
         '     <input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
       recuperar += '   <div id="buttons">';
       recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
-      recuperar += '			<button type="button" class="btn_save">Restaurar</button>';
+      recuperar += '			<button type="button" class="btn_save">Guardar Cambio</button>';
       recuperar += "		</div> ";
       recuperar += "	</div>";
       recuperar += "</section>";
@@ -223,6 +223,76 @@ function click() {
               }
             );
           }
+        });
+      });
+    });
+    $(".link_delete").click(function () {
+      //valores obtendra el dato del td por posciones [0]
+      var ID = $(this).parents("tr").find("td")[0].innerHTML;
+      var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
+      var DNI = $(this).parents("tr").find("td")[2].innerHTML;
+      var Correo = $(this).parents("tr").find("td")[3].innerHTML;
+      console.log(ID + ", " + Nombre + ", " + DNI + ", " + Correo);
+      var recuperar = "";
+
+      recuperar += '<section id="containerEdit">';
+      recuperar += '<div class="alertModal">';
+      recuperar += '	<div class="modal">';
+      recuperar += '		<div id="bodyModal" class="bodyModal data_update"></div>';
+      recuperar += "	</div>";
+      recuperar += "</div>";
+      recuperar += '	 <div id="bodyEdit">';
+      recuperar += "		<h2>Borrar Cliente</h2>";
+      recuperar += '		<label for="Nombre">Nombre</label>';
+      recuperar +=
+        '			<p id="name" name="nombre">' + Nombre + '</p>';
+      recuperar += '		<label for="dni">DNI</label>';
+      recuperar +=
+        '			<p id="dni" name="dni">' + DNI + '</p>';
+      recuperar += '		<label for="correo">Correo</label>';
+      recuperar +=
+        '			<p id="correo" name="Correo">' + Correo + '</p>';
+      recuperar += '<label for="password">Contraseña</label>';
+      recuperar +=
+        '<input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
+      recuperar += '<div id="buttons">';
+      recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
+      recuperar += '			<button type="button" class="btn_save">Cambiar</button>';
+      recuperar += '		</div>';
+      recuperar += '	</div>';
+      recuperar += '</section>';
+
+      document.getElementById("actions").innerHTML = recuperar;
+      $(".btn_cancel").click(function () {
+        location.reload();
+      });
+      $(".btn_save").click(function () {
+        var idusu = sessionStorage.getItem("idusuario");
+        var clave = md5(document.getElementById("password").value);
+        $queryString =
+          "SELECT idusuario, clave FROM usuario WHERE idusuario =?";
+
+        connection.query($queryString, [idusu], (err, results) => {
+          if (err) {
+            return console.log("An error ocurred with the query", err);
+          }
+          if (results[0].idusuario == idusu && results[0].clave == clave) {
+            $queryString =
+              "UPDATE cliente set estatus = 0 where idcliente= ?";
+
+            connection.query($queryString, [ID], (err, results) => {
+                if (err) {
+                  return console.log("An error ocurred with the query", err);
+                }
+                if (results) {
+                  location.reload();
+                }
+              }
+            );
+          }
+          var messerror =
+            '<p class="msg_error">Error al actualizar el Usuario</p>';
+          document.getElementById("bodyModal").innerHTML = messerror;
         });
       });
     });

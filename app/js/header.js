@@ -20,7 +20,7 @@ if (
     '<li><a href="lista_usuario.html"><i class="fas fa-users"></i> Lista de Usuarios</a></li>';
     if((sessionStorage.getItem("rol") === "SuperAdmin" || sessionStorage.getItem("rol") === "Administrador") &&
     sessionStorage.getItem("rol") != null){
-      html +='<li><a href="recuperar_usuario.html"><i class="fas fa-users"></i> Recuperar Usuarios</a></li>';
+      html +='<li><a href="recuperar_usuario.html"><i class="fas fa-user-nurse"></i> Recuperar Usuarios</a></li>';
     }
   html += "</ul></li>";
 }
@@ -34,7 +34,7 @@ html +=
 html +=
   '<li><a href="lista_cliente.html"><i class="fas fa-users"></i> Lista de Clientes</a></li>';
 html +=
-  '<li><a href="recuperar_cliente.html"><i class="fas fa-users"></i> Recuperar Clientes</a></li>';
+  '<li><a href="recuperar_cliente.html"><i class="fas fa-user-nurse"></i> Recuperar Clientes</a></li>';
 html += "</ul></li>";
 
 if (
@@ -50,6 +50,10 @@ if (
   }
   html +=
     '<li><a href="lista_proveedor.html"><i class="fas fa-truck"></i> Lista de Proveedores</a></li>';
+  if((sessionStorage.getItem("rol") === "SuperAdmin" || sessionStorage.getItem("rol") === "Administrador") &&
+  sessionStorage.getItem("rol") != null){
+    html +='<li><a href="recuperar_proveedor.html"><i class="fas fa-user-nurse"></i> Recuperar Proveedores</a></li>';
+  }
   html += "</ul>";
   html += "</li>";
 }
@@ -62,9 +66,13 @@ if (
   html += '<a href="#"><i class="fas fa-barcode"></i> Productos</a>';
   html += "<ul>";
   html +=
-    '<li><a href="https://drive.google.com/drive/u/0/my-drive"><i class="fas fa-cart-plus"></i> Nuevo Producto</a></li>';
+    '<li><a href="nuevo_producto.html"><i class="fas fa-cart-plus"></i> Nuevo Producto</a></li>';
   html +=
-    '<li><a href="productos.html"><i class="fas fa-barcode"></i> Lista de Productos</a></li>';
+    '<li><a href="lista_productos.html"><i class="fas fa-barcode"></i> Lista de Productos</a></li>';
+  if((sessionStorage.getItem("rol") === "SuperAdmin" || sessionStorage.getItem("rol") === "Administrador") &&
+    sessionStorage.getItem("rol") != null){
+    html +='<li><a href="recuperar_producto.html"><i class="fas fa-user-nurse"></i> Recuperar Productos</a></li>';
+  }
   html += "</ul>";
   html += "</li>";
 }

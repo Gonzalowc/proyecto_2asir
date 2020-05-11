@@ -181,7 +181,7 @@ function click() {
       recuperar += "	</div>";
       recuperar += "</div>";
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2>Editar Usuario</h2>";
+      recuperar += "		<h2><i class='fas fa-users-cog'></i> Editar Usuario</h2>";
       recuperar += '		<label for="Nombre">Nombre</label>';
       recuperar +=
         '			<input id="name" name="nombre" value="' + Nombre + '"></input>';

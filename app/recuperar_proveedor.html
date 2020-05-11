@@ -23,64 +23,43 @@
 					document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
 					</script></p>
 				<span>|</span>
-				<span id="user"><div id="userUsuario"><script type="text/javascript">
-				if(sessionStorage.getItem("usuario")){
-					document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");
-					}else{
-						document.getElementById('userUsuario').innerHTML = "Usuario"
-						}
-					</script>
-					</div>
-					<div id="userRol"><script type="text/javascript">
-					if(sessionStorage.getItem("rol")){
-						document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");
-						}else{
-							document.getElementById('userRol').innerHTML = "Rol"
-							}
-					</script></div></span>
+				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
+					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
 					<a id="editUser" href="editar_localUser.html"></a>
-					<script>
-					  var foto = sessionStorage.getItem("fotoPerfil");
-					  var enlace = "";
-						  enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
-						  document.querySelector("#editUser").innerHTML = enlace;
-					</script>
-				</a>
+              <script>
+                var foto = sessionStorage.getItem("fotoPerfil");
+                var enlace = "";
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
+                    document.querySelector("#editUser").innerHTML = enlace;
+              </script>
+          </a>
 				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>
 
 		<!-- Navegation -->
 		<nav>
-			<ul id="navegator">
-			</ul>
+			<ul id="navegator"></ul>
 		</nav>
 		<!-- Fin navegation -->
 	</header>
 	<div class="alertModal">
 		<div class="modal">
-			<div class="bodyModal data_update"></div>
+			<div id="message"class="bodyModal data_update"></div>
 		</div>
 	</div>
 <!-- fin header -->
     <section id="container">
-    <!-- ===============Lista====CLIENTES============ -->
-        <h1><i class="fas fa-users"></i> Lista de Clientes</h1>
-        <a href="nuevo_cliente.html" class="btn_new"><i class="fas fa-user-plus"></i> Crear Cliente</a>
+    <!-- ===============Lista====USUARIO============ -->
+        <h1><i class="fas fa-user-nurse"></i> Recuperar Proveedores</h1>        
+		<div id="table_date"></div>
+				<br><br>			
+		<span id="Edit"></span>
 
-        
-		<div id="table_date">
-			
-			
-		</div>
-	<br><br>
-	<span id="actions"></span>
-	<div id="imagene">
 
-	</div>
-
-<script type="text/javascript" src="./js/lista_cliente.js"></script>
-<script type="text/javascript" src="./js/header.js"></script>
+		<script type="text/javascript" src="./js/header.js"></script>
+		<script type="text/javascript" src="./js/recuperar_proveedor.js"></script>
+		
 
 </body>
 </html>

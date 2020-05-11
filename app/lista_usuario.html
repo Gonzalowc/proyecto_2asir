@@ -18,7 +18,7 @@
 		<div class="header">
 			<h1><span class="imgage"><img src="../img/login.png" class="logoLogin" alt="logo"></span><span class="title">Sistema Facturación</span> </h1>
 			<div class="optionsBar">
-				<p>España, <script>
+				<p id="pais"></p><p>. <script>
 					var f = new Date();
 					document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
 					</script></p>
@@ -29,8 +29,7 @@
               <script>
                 var foto = sessionStorage.getItem("fotoPerfil");
                 var enlace = "";
-                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
-                    document.querySelector("#editUser").innerHTML = enlace;
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';                    document.querySelector("#editUser").innerHTML = enlace;
               </script>
           </a>
 				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
