@@ -93,7 +93,7 @@ document.querySelector(".btn_save").onclick = function (e) {
     var descripcion = document.getElementById("description").value;
     var proveedor = document.getElementById("proveedor").value;    
     var producto  = document.getElementById("producto").value;
-    var replaceImg = producto.replace(/ /g,'')+md5(Date.now()) + ".png";
+    var replaceImg = producto.replace(/ /g,'')+Date.now() + ".png";
     if(producto == null){
       replaceImg = "";
     }
@@ -145,6 +145,7 @@ document.querySelector(".btn_save").onclick = function (e) {
           alertRegister.innerHTML =
             '<b><p style="color: green;">Producto Modificado Correctamente</p></b>';
           alertRegister.style.display = "block";
+          localStorage.setItem("prevIMG", replaceImg);
         }
       );
 

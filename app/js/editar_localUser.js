@@ -28,16 +28,15 @@ connection.query($queryString, [idusu], (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
   }
-  console.log(
-    
-  );
   sessionStorage.setItem("img", results[0].fotoPerfil);
-  document
-    .getElementById("imgP")
-    .setAttribute(
-      "src",
-      Uimg + results[0].fotoPerfil
-    );
+  if(results[0].fotoPerfil){
+    console.log("url: ('" + Uimg + results[0].fotoPerfil +"')")
+    document.getElementById("imgP").style.backgroundImage = "url('" + Uimg + results[0].fotoPerfil +"')";
+  }else{
+    document.getElementById("imgP").style.backgroundImage = "url('./img/defecto_avatar.jpg')";
+  }
+
+  
 });
 
 

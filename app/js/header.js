@@ -79,7 +79,7 @@ if (
 html += '<li id="principal5" class="principal">';
 html += '<a href="#"><i class="fas fa-receipt"></i> Ventas</a>';
 html += '<ul>';
-html += '<li><a href="#"><i class="fas fa-concierge-bell"></i> Nueva Venta</a></li>';
+html += '<li><a href="nuevo_venta.html"><i class="fas fa-concierge-bell"></i> Nueva Venta</a></li>';
 html += '<li><a href="#"><i class="fas fa-receipt"></i> Lista de Facturas</a></li>';
 html += '</ul></li>';
 

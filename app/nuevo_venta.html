@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/all.js"></script>
+		<title>Sisteme Ventas</title>
+		<script
+		  src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" data-auto-replace-svg="nest"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	</head>
+<body>
+
+<header>
+		<div class="header">
+			<h1><span class="imgage"><img src="../img/login.png" class="logoLogin" alt="logo"></span><span class="title">Sistema Facturación</span> </h1>
+			<div class="optionsBar">
+				<p id="pais"></p><p>. <script>
+					var f = new Date();
+					document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+					</script></p>
+				<span>|</span>
+				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
+					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
+					<a id="editUser" href="editar_localUser.html"></a>
+              <script>
+                var foto = sessionStorage.getItem("fotoPerfil");
+                var enlace = "";
+                    enlace += '<img class="photouser" src="'+foto+'" oneerror="this.src="img/user.png""/>';
+                    document.querySelector("#editUser").innerHTML = enlace;
+              </script>
+          </a>
+				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
+			</div>
+		</div>
+
+		<!-- Navegation -->
+		<nav>
+			<ul id="navegator"></ul>
+		</nav>
+		<!-- Fin navegation -->
+	</header>
+	<div class="alertModal">
+		<div class="modal">
+			<div id="message"class="bodyModal data_update"></div>
+		</div>
+	</div>
+<!-- fin header -->
+    <section id="container">
+        <div class="title_page">
+            <h1><i class="fas fa-cart-arrow-down"></i> Nueva Venta</h1>
+            <div class="datos_cliente">
+                <div class="action_cliente">
+                    <h4>Datos del Cliente</h4>
+                    <a href="#" class="btn_new btn_new_cliente"><i class="fas fa-user-plus"></i> Nuevo Cliente</a>
+                </div>
+            </div>
+            <form name="form_new_cliente_venta" id="form_new_cliente_venta" class="datos">
+                <input type="hidden" name="action" value="addCliente">
+                <input type="hidden" name="usuario_id" id="usuario_id" value="">
+                <input type="hidden" name="idcliente" id="idcliente" value="" required>
+                <div class="wd30">
+                <label for="dni_cliente">NIF</label>
+                <input type="text" name="dni_cliente" id="dni_cliente">
+                </div>
+                <div class="wd30">
+                <label for="nom_cliente" >Nombre</label>
+                <input type="text" name="nom_cliente" id="nom_cliente" disabled required>
+                </div>
+                <div class="wd30">
+                <label for="tel_cliente">Teléfono</label>
+                <input type="number" name="tel_cliente" id="tel_cliente" disabled required>
+                </div>
+                <div class="wd100">
+                <label for="dir_cliente">Dirección</label>
+                <input type="text" name="dir_cliente" id="dir_cliente" disabled required>
+                <label for="dir_cliente">Email</label>
+                <input type="text" name="mail_cliente" id="mail_cliente" disabled required>
+                </div>
+                <div class="wd100" id="div_registro_cliente">
+                <button type="submit" class="btn_save"><i class="far fa-save fa lg"></i> Guardar</button>
+                </div>
+            </form>
+        </div> 
+        <div class="datos_venta">
+            <h4>Datos de Venta</h4>
+            <div class="datos">
+                <div class="wd50">
+                    <label for="vendedor">Vendedor</label>
+                    <p name="vendedor" id="vendedor"></p>
+                </div>
+                <div class="wd50">
+                    <label>Acciones</label>
+                    <div id="acciones_venta">
+                    <a href="#" class="btn_cancel textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular</a>
+                    <a href="#" class="btn_save textcenter" id="btn_facturar_venta"><i class="far fa-edit"></i>Procesar</a>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <table class="tbl_venta">
+            <thead>
+                <tr>
+                    <th width="100px">Código</th>
+                    <th>Descripción</th>
+                    <th>Existencia</th>
+                    <th width="100px">Cantidad</th>
+                    <th class="textrigth">Precio</th>
+                    <th class="textrigth">Precio Total</th>
+                    <th>Acción</th>
+                </tr>
+                <tr>
+                    <td><input type="number" min="0" name="txt_cod_producto" id="txt_cod_producto"></td>
+                    <td id="txt_descripcion">-</td>
+                    <td id="txt_existencia">-</td>
+                    <td><input type="number" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
+                    <td id="txt_precio" class="textright">0.00</td>
+                    <td id="txt_precio_total" class="textright">0.00</td>
+                    <td><a href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i> Agregar</a></td>
+                </tr> 
+                <tr>
+                    <th>Código</th>
+                    <th colspan="2"> Descripción</th>
+                    <th>Cantidad</th>
+                    <th class="textright">Precio</th>
+                    <th class="textright">Precio Total</th>
+                    <th>Acción</th>
+                </tr>  
+            </thead>
+            <tbody id="detalle_venta">
+            </tbody>
+            <tfoot id="detalle_totales">
+            </tfoot>
+        </table>
+
+		<script type="text/javascript" src="./js/header.js"></script>
+		<script type="text/javascript" src="./js/nuevo_venta.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var usuarioid = sessionStorage.getItem("idusuario");
+            searchForDetalle(usuarioid);
+        })
+        </script>
+
+</body>
+</html>
+    
+
+

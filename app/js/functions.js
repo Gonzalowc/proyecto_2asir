@@ -37,7 +37,7 @@ if (
   });
   var emailUser = sessionStorage.getItem("correo");
   $queryString =
-    "SELECT r.rol, u.usuario, u.idusuario, u.fotoPerfil, r.idrol FROM usuario u JOIN rol r ON r.idrol=u.rol  WHERE correo = ?";
+    "SELECT r.rol, u.nombre, u.usuario, u.idusuario, u.fotoPerfil, r.idrol FROM usuario u JOIN rol r ON r.idrol=u.rol  WHERE correo = ?";
 
   connection.query($queryString, [emailUser], (err, rows) => {
     if (err) {
@@ -55,11 +55,13 @@ if (
             var foto = Uimg+row.fotoPerfil;
             var iusuario = row.idusuario;
             var idrol = row.idrol;
+            var nombre = row.nombre;
             sessionStorage.setItem("usuario", usuario);
             sessionStorage.setItem("rol", rol);
             sessionStorage.setItem("idrol", idrol);
             sessionStorage.setItem("idusuario", iusuario);
             sessionStorage.setItem("fotoPerfil", foto);
+            sessionStorage.setItem("nombre", nombre);
             window.setTimeout("location.reload()", 500);
             if (iusuario != sessionStorage.getItem("idusuario")) {
               sessionStorage.clear();
