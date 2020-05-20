@@ -84,7 +84,6 @@ connection.query($queryString, [vendedor], (err, results) => {
       list_table += "</tbody>";
       list_table += "</table>";
       document.getElementById("table_date").innerHTML = list_table;
-      console.log(results);
 });
 
 //==========================Buscador=======================
@@ -155,25 +154,25 @@ function click() {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
       var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
-      var DNI = $(this).parents("tr").find("td")[2].innerHTML;
+      var contacto = $(this).parents("tr").find("td")[2].innerHTML;
       var telefono = $(this).parents("tr").find("td")[3].innerHTML;
-      var correo = $(this).parents("tr").find("td")[4].innerHTML;
-      var jefe = $(this).parents("tr").find("td")[5].innerHTML;
+      var correo = $(this).parents("tr").find("td")[5].innerHTML;
+      var jefe = $(this).parents("tr").find("td")[6].innerHTML;
       
       var recuperar = "";
       recuperar += '<section id="containerEdit">';
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2>Recuperar Usuario</h2>";
-      recuperar += '		<label for="Nombre">Nombre</label>';
+      recuperar += "		<h2>Recuperar Proveedor</h2>";
+      recuperar += '		<label for="Nombre">Empresa</label>';
       recuperar += '			<p name="nombre">' + Nombre + "</p>";
-      recuperar += '		<label for="dni">DNI</label>';
-      recuperar += '			<p name="dni">' + DNI + "</p>";
+      recuperar += '		<label for="dni">Contacto</label>';
+      recuperar += '			<p name="dni">' + contacto + "</p>";
       recuperar += '		<label for="telefono">Telefono</label>';
       recuperar += '			<p name="telefono">' + telefono + "</p>";
       recuperar += '		<label for="correo">Email</label>';
       recuperar += '			<p name="correo">' + correo + "</p>";
       if(sessionStorage.getItem("rol") == "SuperAdmin"){
-       recuperar += '		<label for="Rol">Jefe</label>';
+       recuperar += '		<label for="Rol">usuario(ID)</label>';
       recuperar += '			<p name="Rol">' + jefe + "</p>";   
       }
       
@@ -188,9 +187,7 @@ function click() {
       $(".btn_cancel").click(function () {
         location.reload();
       });
-      $(".btn_save").click(function () {
-        /* location.reload(); */
-        
+      $(".btn_save").click(function () {        
         $queryString =
           "UPDATE proveedor set estatus=1 where codproveedor= ? and estatus=0";
 

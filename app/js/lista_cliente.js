@@ -141,19 +141,6 @@ function click() {
       var telefono = $(this).parents("tr").find("td")[3].innerHTML;
       var direccion = $(this).parents("tr").find("td")[4].innerHTML;
       var email = $(this).parents("tr").find("td")[5].innerHTML;
-      console.log(
-        ID +
-          ", " +
-          DNI +
-          ", " +
-          nombre +
-          ", " +
-          telefono +
-          " , " +
-          direccion +
-          ", " +
-          email
-      );
       var recuperar = "";
 
       recuperar += '<section id="containerEdit">';
@@ -232,7 +219,6 @@ function click() {
       var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
       var DNI = $(this).parents("tr").find("td")[2].innerHTML;
       var Correo = $(this).parents("tr").find("td")[3].innerHTML;
-      console.log(ID + ", " + Nombre + ", " + DNI + ", " + Correo);
       var recuperar = "";
 
       recuperar += '<section id="containerEdit">';

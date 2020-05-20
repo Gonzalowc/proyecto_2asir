@@ -22,9 +22,10 @@ var mysql = require("mysql");
 //===================================================
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: null,
+  host: "79.145.85.205",
+  port: "37182",
+  user: "gonzalo",
+  password: "123gonzalo123",
   database: "factura",
 });
 //Hash password

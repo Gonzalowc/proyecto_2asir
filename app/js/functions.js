@@ -8,11 +8,13 @@ var md5 = require("md5");
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-var Uimg ="http://localhost/proyecto/img/profiles/"
+var ip = "79.145.85.205";
+var Uimg ="http://"+ip+"/proyecto/img/profiles/"
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: null,
+  host: "79.145.85.205",
+  port: "37182",
+  user: "gonzalo",
+  password: "123gonzalo123",
   database: "factura",
 });
 
@@ -45,7 +47,6 @@ if (
     }
     if (rows.length > 0) {
       rows.forEach((row) => {
-        console.log(rows);
         if (row.rol != null || row.usuario != null) {
           //===============sessionStorage================
 

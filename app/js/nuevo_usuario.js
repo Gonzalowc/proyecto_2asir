@@ -19,11 +19,8 @@ connection.query($queryString, (err, results) => {
   if(i == 2){
     i = 1;
   }
-  
-  console.log(i);
   let rol = "";
   for (i; i < results.length; i++) {
-    console.log(results[i].rol+" - "+results[i].idrol)
     rol +=
       '<option value="' +
       results[i].idrol +
@@ -54,9 +51,6 @@ document.querySelector("#submit").onclick = function (e) {
   if (name == "") {
     var usuario = "user" + datenow;
   }
-
-  
-  console.log(name + " " + correo + " " + usuario + " " + clave + " " + rol);
 
   if (name == "" || correo == "" || codePass == "" || !validateEmail) {
     alertRegister.innerHTML =

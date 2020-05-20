@@ -58,17 +58,6 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "</thead>";
   list_table += "<tbody>";
   for (i = 0; i < results.length; i++) {
-    console.log(
-      results[i].idusuario +
-        " - " +
-        results[i].nombre +
-        " - " +
-        results[i].usuario +
-        " - " +
-        results[i].correo +
-        " - " +
-        results[i].rol
-    );
     list_table += "<tr>";
     list_table += "<td>" + results[i].idusuario + "</td>";
     list_table += "<td>" + results[i].nombre + "</td>";
@@ -170,7 +159,7 @@ function click() {
       var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
       var Usuario = $(this).parents("tr").find("td")[2].innerHTML;
       var Correo = $(this).parents("tr").find("td")[3].innerHTML;
-      console.log(ID + ", " + Nombre + ", " + Usuario + ", " + Correo);
+      
       var recuperar = "";
       var roles = "";
 
@@ -206,8 +195,6 @@ function click() {
           i = 1;
         }
         for (i; i < results.length; i++) {
-          console.log(results[i].rol + " - " + results[i].idrol);
-
           roles +=
             '<option value="' +
             results[i].idrol +
@@ -275,7 +262,6 @@ function click() {
       var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
       var Usuario = $(this).parents("tr").find("td")[2].innerHTML;
       var Correo = $(this).parents("tr").find("td")[3].innerHTML;
-      console.log(ID + ", " + Nombre + ", " + Usuario + ", " + Correo);
       var recuperar = "";
       var roles = "";
 

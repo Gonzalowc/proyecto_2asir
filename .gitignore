@@ -1,6 +1,8 @@
 
 credentials.json
-index.js
+
 token.json
 app/js/paginador.js
-node_modules
+app/db/
+node_modules/
+release-builds/

@@ -2,8 +2,9 @@
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
 //Paginador
+var ip = "79.145.85.205";
 var rol = sessionStorage.getItem("idrol");
-var rutaIMG = "http://localhost/proyecto/img/products/";
+var rutaIMG = "http://"+ip+"/proyecto/img/products/";
 //==================listar usuarios
 if(rol > 2){
 document.getElementById("new").style.display = "none"; 
@@ -74,7 +75,6 @@ connection.query($queryString, (err, results) => {
         }
     list_table += "</td>";
     list_table += "</tr>";
-    console.log(rutaIMG +results[i].foto);
   }
   list_table += "</tbody>";
   list_table += "</table>";
@@ -152,9 +152,8 @@ function click() {
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
       var producto = $(this).parents("tr").find("td")[1].innerHTML;
       var imagen = $(this).parents("tr").find("td")[6].innerHTML;
-      
-      console.log(ID + ", " + producto + ", " + imagen);
       var recuperar = "";
+
       recuperar += '<section id="containerEdit">';
       recuperar += '<div class="alertModal">';
       recuperar += '	<div class="modal">';
@@ -279,7 +278,6 @@ function click() {
       });
       $(".btn_ok").click(function (){
         localStorage.setItem("idproductChange", ID);
-        console.log(localStorage.getItem("idproductChange"));
         window.location = "./editar_producto.html";
       });
     });

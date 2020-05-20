@@ -63,19 +63,6 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "</thead>";
   list_table += "<tbody>";
   for (i = 0; i < results.length; i++) {
-    console.log(
-      results[i].idusuario +
-        " - " +
-        results[i].nombre +
-        " - " +
-        results[i].usuario +
-        " - " +
-        results[i].correo +
-        " - " +
-        results[i].Jefe +
-        " - " +
-        results[i].rol
-    );
     list_table += "<tr>";
     list_table += "<td>" + results[i].idusuario + "</td>";
     list_table += "<td>" + results[i].nombre + "</td>";
@@ -165,20 +152,8 @@ function click() {
       var Correo = $(this).parents("tr").find("td")[3].innerHTML;
       var Jefe = $(this).parents("tr").find("td")[4].innerHTML;
       var Rol = $(this).parents("tr").find("td")[5].innerHTML;
-      console.log(
-        ID +
-          ", " +
-          Nombre +
-          ", " +
-          Usuario +
-          ", " +
-          Correo +
-          ", " +
-          Jefe +
-          ", " +
-          Rol
-      );
       var recuperar = "";
+
       recuperar += '<section id="containerEdit">';
       recuperar += '	 <div id="bodyEdit">';
       recuperar += "		<h2>Recuperar Usuario</h2>";
@@ -203,20 +178,6 @@ function click() {
       });
       $(".btn_save").click(function () {
         /* location.reload(); */
-        console.log(
-          "Desde la funcion salvar " +
-            ID +
-            ", " +
-            Nombre +
-            ", " +
-            Usuario +
-            ", " +
-            Correo +
-            ", " +
-            Jefe +
-            ", " +
-            Rol
-        );
         $queryString =
           "UPDATE usuario set estatus=1 where idusuario= ? and estatus=0";
 

@@ -139,7 +139,6 @@ function click() {
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
       var Empresa = $(this).parents("tr").find("td")[1].innerHTML;
       
-      console.log(ID + ", " + Empresa);
       var recuperar = "";
       recuperar += '<section id="containerEdit">';
       recuperar += '<div class="alertModal">';
@@ -157,7 +156,7 @@ function click() {
         '<input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
       recuperar += '<div id="buttons">';
       recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
-      recuperar += '			<button type="button" class="btn_save">Cambiar</button>';
+      recuperar += '			<button type="button" class="btn_save">Eliminar</button>';
       recuperar += '		</div>';
       recuperar += '	</div>';
       recuperar += '</section>';
@@ -200,23 +199,10 @@ function click() {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
       var Empresa = $(this).parents("tr").find("td")[1].innerHTML;
-      var DNI = $(this).parents("tr").find("td")[2].innerHTML;
+      var contacto = $(this).parents("tr").find("td")[2].innerHTML;
       var telefono = $(this).parents("tr").find("td")[3].innerHTML;
       var direccion = $(this).parents("tr").find("td")[4].innerHTML;
       var email = $(this).parents("tr").find("td")[5].innerHTML;
-      console.log(
-        ID +
-          ", " +
-          DNI +
-          ", " +
-          Empresa +
-          ", " +
-          telefono +
-          " , " +
-          direccion +
-          ", " +
-          email
-      );
       var recuperar = "";
 
       recuperar += '<section id="containerEdit">';
@@ -224,9 +210,11 @@ function click() {
       recuperar += "		<h2><i class='fas fa-users-cog'></i> Editar Proveedor</h2>";
       recuperar += '		<label for="Empresa">Empresa</label>';
       recuperar +=
+        '			<input type="hidden" id="idprov" name="idprov" value="' + ID + '"></input>';
+      recuperar +=
         '			<input id="name" name="Empresa" value="' + Empresa + '"></input>';
-      recuperar += '   <label for="DNI">DNI</label>';
-      recuperar += '			<input id="dni" name="DNI" value="' + DNI + '"></input>';
+      recuperar += '   <label for="contacto">Contacto</label>';
+      recuperar += '			<input id="contacto" name="contacto" value="' + contacto + '"></input>';
       recuperar += '		<label for="telefono">Teléfono</label>';
       recuperar +=
         '			<input id="telefono" name="telefono" value="' +
@@ -266,16 +254,16 @@ function click() {
           }
           if (results[0].idusuario == idusu && results[0].clave == clave) {
             var Empresa = document.getElementById("name").value;
-            var DNI = document.getElementById("dni").value;
+            var contacto = document.getElementById("contacto").value;
             var telefono = document.getElementById("telefono").value;
             var direccion = document.getElementById("direccion").value;
             var email = document.getElementById("email").value;
             $queryString =
-              "UPDATE cliente set DNI=?, Empresa=?, telefono=?, direccion=?, email=? where idcliente= ?";
+              "UPDATE proveedor set proveedor=?, contacto=?, telefono=?, direccion=?, email=? where codproveedor= ?";
 
             connection.query(
               $queryString,
-              [DNI, Empresa, telefono, direccion, email, ID],
+              [Empresa, contacto, telefono, direccion, email, ID],
               (err, results) => {
                 if (err) {
                   return console.log("An error ocurred with the query", err);

@@ -1,7 +1,8 @@
 // Jquery
 var $ = require("jquery");
-var Uimg= "http://localhost/proyecto/img/profiles/";
-var Uindex = "http://localhost/proyecto/";
+var ip = "79.145.85.205";
+var Uimg= "http://"+ip+"/proyecto/img/profiles/";
+var Uindex = "http://"+ip+"/proyecto/";
 var idusu = sessionStorage.getItem("idusuario");
 $queryString =
   "SELECT u.nombre, u.correo, u.usuario, r.rol, u.fotoPerfil FROM usuario u JOIN rol r ON u.rol=r.idrol WHERE idusuario= ?";
@@ -9,7 +10,6 @@ connection.query($queryString, [idusu], (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
   }
-  console.log(results);
   let name = results[0].nombre;
   let correo = results[0].correo;
   let usuario = results[0].usuario;
@@ -30,13 +30,10 @@ connection.query($queryString, [idusu], (err, results) => {
   }
   sessionStorage.setItem("img", results[0].fotoPerfil);
   if(results[0].fotoPerfil){
-    console.log("url: ('" + Uimg + results[0].fotoPerfil +"')")
     document.getElementById("imgP").style.backgroundImage = "url('" + Uimg + results[0].fotoPerfil +"')";
   }else{
     document.getElementById("imgP").style.backgroundImage = "url('./img/defecto_avatar.jpg')";
   }
-
-  
 });
 
 
@@ -79,7 +76,7 @@ const fotoP = sessionStorage.getItem("img");
             .then(decodificado => {
                 console.log(decodificado);
             });
-            /* location.reload(); */
+            location.reload();
     } else {
         // El usuario no ha seleccionado archivos
         alert("Selecciona un archivo");

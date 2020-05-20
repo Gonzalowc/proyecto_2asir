@@ -1,6 +1,6 @@
 var md5 = require("md5");
-
-var Uri = "http://localhost/proyecto/";
+var ip = "79.145.85.205";
+var Uri = "http://"+ ip+"/proyecto/";
 var vendedor = sessionStorage.getItem("nombre");
 
 document.getElementById("vendedor").innerHTML = vendedor;
@@ -122,8 +122,7 @@ $('.btn_new_cliente').click(function(e){
 // Mostrar boton agregar
                 $('#add_product_venta').slideDown();
                 }else{
-                /* if(response = 'Error'){ */
-                    console.log("adios"); 
+                if(response = 'Error'){ 
                     $('#txt_descripcion').html('-');
                     $('#txt_existencia').html('-');
                     $('#txt_cant_producto').val('0');
@@ -133,7 +132,7 @@ $('.btn_new_cliente').click(function(e){
                     $('#txt_cant_producto').attr('disabled','disabled');
 // Ocultar boton agregar
                     $('#add_product_venta').slideUp();
-                }    
+                } }   
             },
             error: function(error){
                 }
@@ -190,13 +189,79 @@ $("#add_product_venta").click(function(e){
             }else{
                 console.log("No data");
             }
+            viewProcesar();
         },
         error: function(error){
 
         }
     });
 })
+//Anular Venta
+$("#btn_anular_venta").click(function(e){
+    e.preventDefault();
+    var rows = $("#detalle_venta tr").length;
+    var usuario_id = sessionStorage.getItem("idusuario");
+    if(rows > 0){
+        var action = "anularVenta";
+
+        $.ajax({
+            url: Uri+"ajax_ventas.php",
+            type: "POST",
+            async: true,
+            data:{action:action,usuario_id:usuario_id},
+            success: function(response){
+                console.log(response);
+                if(response != "Error"){
+                    location.reload();
+                }
+            },
+            error: function(error){
+            }
+        });
+    }
 });
+
+//Procesar Venta
+$("#btn_facturar_venta").click(function(e){
+    e.preventDefault();
+    var rows = $("#detalle_venta tr").length;
+    var usuario_id = sessionStorage.getItem("idusuario");
+    if(rows > 0){
+        var action = "procesarVenta";
+        var codcliente = $("#idcliente").val();
+
+        $.ajax({
+            url: Uri+"ajax_ventas.php",
+            type: "POST",
+            async: true,
+            data:{action:action,codcliente:codcliente,usuario_id:usuario_id},
+            success: function(response){
+                if(response != "Error"){
+                    var info = JSON.parse(response);
+                    generarPDF(info.codcliente, info.nofactura);
+                    /* location.reload(); */
+                }else{
+                    console.log("No data");
+                }
+            },
+            error: function(error){
+            }
+        });
+    }
+});
+});// End Ready
+
+function generarPDF(cliente, factura){
+    var ancho = 1000;
+    var alto = 800;
+    //calcular posicion x,y para centrar ventana
+    var x = parseInt((window.screen.width/2)-(ancho/2));
+    var y = parseInt((window.screen.height/2)-(alto/2));
+
+    $url = Uri + "PDF/generaFactura.php?cl="+ cliente + "&f="+ factura;
+    window.open($url,"Factura","left="+x+", top="+y+", height="+alto+
+    ", width="+ancho+", scrollbar=si, locacion=no, resizable=si,menubar=no");
+}
 
 function del_product_detalle(correlativo){
     var action = "delProductoDetalle";
@@ -227,12 +292,20 @@ function del_product_detalle(correlativo){
                 $("#detalle_venta").html('');
                 $("#detalle_totales").html('');
             }
-                            
+            viewProcesar();              
         },
         error: function(error){
 
         }
     });
+}
+
+function viewProcesar(){
+    if($("#detalle_venta tr").length > 0){
+        $("#btn_facturar_venta").show();
+    }else{
+        $("#btn_facturar_venta").hide();
+    }
 }
 
 function searchForDetalle(id){
@@ -253,7 +326,7 @@ function searchForDetalle(id){
             }else{
                 console.log("No Data");
             }
-                            
+            viewProcesar();                
         },
         error: function(error){
 
@@ -268,7 +341,6 @@ connection.query($queryString, (err, results) => {
   if(results <= 0){
     $queryString =
     "ALTER TABLE detalle_temp AUTO_INCREMENT = 1";
-console.log("hola");
 connection.query($queryString, (err) => {
   if (err) {
     return console.log("An error ocurred with the query", err);

@@ -187,9 +187,7 @@ function click() {
       $(".btn_cancel").click(function () {
         location.reload();
       });
-      $(".btn_save").click(function () {
-        /* location.reload(); */
-        
+      $(".btn_save").click(function () {        
         $queryString =
           "UPDATE cliente set estatus=1 where idcliente= ? and estatus=0";
 

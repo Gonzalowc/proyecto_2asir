@@ -1,4 +1,5 @@
-var Uindex = "http://localhost/proyecto/";
+var ip = "79.145.85.205";
+var Uindex = "http://"+ip+"/proyecto/";
 //=================IMAGEN
 $("#foto").on("change",function(){
   var uploadFoto = document.getElementById("foto").value;
@@ -67,8 +68,6 @@ document.querySelector(".btn_save").onclick = function (e) {
     var proveedor = document.getElementById("proveedor").value;    
     var producto  = document.getElementById("producto").value;
     var replaceImg = producto.replace(/ /g,'') + ".png";
-    
-    console.log(replaceImg);
     var precio    = document.getElementById("precio").value;
     var cantidad  = document.getElementById("cantidad").value;
     var alertRegister = document.getElementById("alert");

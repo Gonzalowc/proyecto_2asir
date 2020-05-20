@@ -1,5 +1,6 @@
-var Uindex = "http://localhost/proyecto/";
-var dirImg = "http://localhost/proyecto/img/products/"
+var ip = "79.145.85.205";
+var Uindex = "http://"+ ip +"/proyecto/";
+var dirImg = "http://"+ ip +"/proyecto/img/products/"
 var ID = localStorage.getItem("idproductChange");
 
 $queryString =
@@ -92,14 +93,7 @@ document.querySelector(".btn_save").onclick = function (e) {
     e.preventDefault();
     var descripcion = document.getElementById("description").value;
     var proveedor = document.getElementById("proveedor").value;    
-    var producto  = document.getElementById("producto").value;
-    var replaceImg = producto.replace(/ /g,'')+Date.now() + ".png";
-    if(producto == null){
-      replaceImg = "";
-    }
-    var prevIMG = localStorage.getItem("prevIMG");
-    
-    console.log(replaceImg);
+    var producto  = document.getElementById("producto").value; 
     var precio    = document.getElementById("precio").value;
     var cantidad  = document.getElementById("cantidad").value;
     var alertRegister = document.getElementById("alert");
@@ -110,33 +104,14 @@ document.querySelector(".btn_save").onclick = function (e) {
         '<b><p style="color: red;">Todos los datos son obligatorios</p></b>';
       alertRegister.style.display = "block";
     } else { 
-      //=====================================================================
-      const inputFile = document.querySelector("#foto");
-      if (inputFile.files.length > 0) {
-          let formData = new FormData();
-          formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
-          fetch(Uindex+"producto.php?product="+replaceImg+"&prevIMG=" + prevIMG, {
-              method: 'POST',
-              body: formData,
-          })
-              .then(respuesta => respuesta.text())
-              .then(decodificado => {
-                  console.log(decodificado);
-              });
-              /* location.reload(); */
-      } else {
-          // El usuario no ha seleccionado archivos
-          alert("Selecciona un archivo");
-      }
-
       //==============================Consulta registrar==========================MySQL===============
   
       $queryString =
-        "UPDATE producto SET producto=?, descripcion=?, proveedor=?, precio=?, existencia=?, usuario_id=?, foto=? WHERE codproducto=?";
+        "UPDATE producto SET producto=?, descripcion=?, proveedor=?, precio=?, existencia=?, usuario_id=? WHERE codproducto=?";
   
       connection.query(
         $queryString,
-        [producto, descripcion, proveedor, precio, cantidad, idusu, replaceImg, ID],
+        [producto, descripcion, proveedor, precio, cantidad, idusu, ID],
         (err) => {
           if (err) {
             return console.log("An error ocurred with the query MySQL", err);
@@ -145,10 +120,55 @@ document.querySelector(".btn_save").onclick = function (e) {
           alertRegister.innerHTML =
             '<b><p style="color: green;">Producto Modificado Correctamente</p></b>';
           alertRegister.style.display = "block";
-          localStorage.setItem("prevIMG", replaceImg);
         }
       );
 
     }
+    
   };
-  
+  document.querySelector(".btn_cancel").onclick = function (e) {
+    e.preventDefault();
+    var alertRegister = document.getElementById("alert");
+    var producto  = document.getElementById("producto").value; 
+    var replaceImg = producto.replace(/ /g,'')+Date.now() + ".png";
+    if(producto == null){
+      replaceImg = "";
+    }
+    var prevIMG = localStorage.getItem("prevIMG");
+  //=====================================================================
+  const inputFile = document.querySelector("#foto");
+  if (inputFile.files.length > 0) {
+      let formData = new FormData();
+      formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
+      fetch(Uindex+"producto.php?product="+replaceImg+"&prevIMG=" + prevIMG, {
+          method: 'POST',
+          body: formData,
+      })
+          .then(respuesta => respuesta.text())
+          .then(decodificado => {
+              console.log(decodificado);
+          });
+  } else {
+      // El usuario no ha seleccionado archivos
+      alert("Selecciona un archivo");
+      return;
+  }
+  $queryString =
+      "UPDATE producto SET foto=? WHERE codproducto=?";
+
+    connection.query(
+      $queryString,
+      [replaceImg, ID],
+      (err) => {
+        if (err) {
+          return console.log("An error ocurred with the query MySQL", err);
+        }
+        alertRegister.style.display = "none";
+        alertRegister.innerHTML =
+          '<b><p style="color: green;">Imagen Modificada Correctamente</p></b>';
+        alertRegister.style.display = "block";
+        localStorage.setItem("prevIMG", replaceImg);
+        /* location.reload(); */
+      }
+    );
+}
