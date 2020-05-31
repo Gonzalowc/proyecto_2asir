@@ -8,11 +8,12 @@ var md5 = require("md5");
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-var ip = "79.145.85.205";
-var Uimg ="http://"+ip+"/proyecto/img/profiles/"
+//var ip = "79.145.85.205";
+var ip = "localhost";
+var Uimg ="http://"+ip+"/proyecto/img/profiles/";
 var connection = mysql.createConnection({
-  host: "79.145.85.205",
-  port: "37182",
+  host: ip,
+ // port: "37182",
   user: "gonzalo",
   password: "123gonzalo123",
   database: "factura",
@@ -75,3 +76,4 @@ if (
     }
   });
 }
+

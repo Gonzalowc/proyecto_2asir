@@ -25,7 +25,7 @@
 				<span>|</span>
 				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
 					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
-					<a id="editUser" href="editar_localUser.html"></a>
+					<a ondragstart="dragstart_handler(event);" id="editUser" href="editar_localUser.html"></a>
               <script>
                 var foto = sessionStorage.getItem("fotoPerfil");
                 var enlace = "";
@@ -33,7 +33,7 @@
                     document.querySelector("#editUser").innerHTML = enlace;
               </script>
           </a>
-				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
+				<a ondragstart="dragstart_handler(event);" id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>
 
@@ -55,7 +55,7 @@
             <div class="datos_cliente">
                 <div class="action_cliente">
                     <h4>Datos del Cliente</h4>
-                    <a href="#" class="btn_new btn_new_cliente"><i class="fas fa-user-plus"></i> Nuevo Cliente</a>
+                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_new btn_new_cliente"><i class="fas fa-user-plus"></i> Nuevo Cliente</a>
                 </div>
             </div>
             <form name="form_new_cliente_venta" id="form_new_cliente_venta" class="datos">
@@ -95,8 +95,8 @@
                 <div class="wd50">
                     <label>Acciones</label>
                     <div id="acciones_venta">
-                    <a href="#" class="btn_cancel textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular</a>
-                    <a href="#" class="btn_save textcenter" id="btn_facturar_venta" style="display:none;"><i class="far fa-edit"></i>Procesar</a>
+                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_cancel textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular</a>
+                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_save textcenter" id="btn_facturar_venta" style="display:none;"><i class="far fa-edit"></i>Procesar</a>
                     </div>    
                 </div>
             </div>
@@ -119,7 +119,7 @@
                     <td><input type="number" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
                     <td id="txt_precio" class="textright">0.00</td>
                     <td id="txt_precio_total" class="textright">0.00</td>
-                    <td><a href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i> Agregar</a></td>
+                    <td><a ondragstart="dragstart_handler(event);" href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i> Agregar</a></td>
                 </tr> 
                 <tr>
                     <th>Código</th>

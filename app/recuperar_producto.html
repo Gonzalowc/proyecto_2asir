@@ -44,7 +44,7 @@
 							document.getElementById('userRol').innerHTML = "Rol"
 							}
 					</script></div></span>
-					<a id="editUser" href="editar_localUser.html"></a>
+					<a ondragstart="dragstart_handler(event);" id="editUser" href="editar_localUser.html"></a>
 					<script>
 					  var foto = sessionStorage.getItem("fotoPerfil");
 					  var enlace = "";
@@ -52,7 +52,7 @@
 						  document.querySelector("#editUser").innerHTML = enlace;
 					</script>
 				</a>
-				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
+				<a ondragstart="dragstart_handler(event);" id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>
 
@@ -72,7 +72,7 @@
     <section id="container">
     <!-- ===============Lista====CLIENTES============ -->
         <h1><i class="fas fa-barcode"></i> Lista de Productos</h1>
-        <a href="nuevo_producto.html" id="new" class="btn_new"><i class="fas fa-cart-plus"></i> Nuevo Producto</a>
+        <a ondragstart="dragstart_handler(event);" href="nuevo_producto.html" id="new" class="btn_new"><i class="fas fa-cart-plus"></i> Nuevo Producto</a>
 		<div id="table_date"><img class="productIMG"></div>
 	<br><br>
 	<span id="actions"></span>

@@ -1,6 +1,9 @@
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
+//var ip = "79.145.85.205";
+var ip = "localhost";
+var ruta = "http://"+ ip+"/proyecto/";
 //Paginador
 var jefe = sessionStorage.getItem("idusuario");
 //==================listar usuarios
@@ -8,14 +11,12 @@ function timeoutclick() {
   click();
 }
 var list_table = "";
-if (sessionStorage.getItem("rol") == "SuperAdmin") {
-  $queryString =
-    "SELECT idcliente, DNI, nombre, telefono, email, direccion, usuario_id FROM cliente  WHERE estatus=? ORDER BY idcliente";
-  jefe = 1;
-} else {
-  $queryString =
-    "SELECT idcliente, DNI, nombre, telefono, direccion, email FROM cliente WHERE estatus=1 and usuario_id = ? ORDER BY usuario_id";
+if(sessionStorage.getItem("rol") != "SuperAdmin"){
+  $queryString = "SELECT f.nofactura, f.fecha, f.totalfactura,f.estatus, u.nombre as vendedor, cl.idcliente, cl.nombre as cliente FROM factura f INNER JOIN usuario u ON f.usuario = u.idusuario INNER JOIN cliente cl ON f.codcliente = cl.idcliente WHERE f.estatus!=10 and idusuario=? ORDER BY f.fecha DESC";
+}else{
+  $queryString = "SELECT f.nofactura, f.fecha, f.totalfactura,f.estatus, u.Jefe, u.nombre as vendedor, cl.idcliente, cl.nombre as cliente FROM factura f INNER JOIN usuario u ON f.usuario = u.idusuario INNER JOIN cliente cl ON f.codcliente = cl.idcliente WHERE f.estatus!=10 ORDER BY f.fecha DESC";
 }
+  
 connection.query($queryString, [jefe], (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
@@ -32,36 +33,55 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "<th></th><th></th><th></th>";
   list_table +=
     '<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th><tr>';
-  list_table += "<th>ID</th>";
-  list_table += "<th>Nombre</th>";
-  list_table += "<th>DNI</th>";
-  list_table += "<th>telefono</th>";
-  list_table += "<th>Dirección</th>";
-  list_table += "<th>Email</th>";
+  list_table += "<th>No.</th>";
+  list_table += "<th>Fecha / hora</th>";
+  list_table += "<th>Cliente</th>";
+  list_table += "<th>Vendedor</th>";
+  list_table += "<th>Estado</th>";
+  list_table += "<th class='textright'>Total Factura</th>";
   if(sessionStorage.getItem("rol")== "SuperAdmin"){
-  list_table += '<th>Vendedor</th>';
+  list_table += '<th>Jefe</th>';
   }
-  list_table += "<th>Acciones</th>";
+  list_table += "<th class='textright'>Acciones</th>";
   list_table += "</tr>";
   list_table += "</thead>";
   list_table += "<tbody>";
   for (i = 0; i < results.length; i++) {
     list_table += "<tr>";
-    list_table += "<td>" + results[i].idcliente + "</td>";
-    list_table += "<td>" + results[i].nombre + "</td>";
-    list_table += "<td>" + results[i].DNI + "</td>";
-    list_table += "<td>" + results[i].telefono + "</td>";
-    list_table += "<td>" + results[i].direccion + "</td>";
-    list_table += "<td>" + results[i].email + "</td>";
+    list_table += "<td>" + results[i].nofactura + "</td>";
+    list_table += "<td>" + results[i].fecha.toDateString() + "</td>";
+    list_table += "<td>" + results[i].cliente + "</td>";
+    list_table += "<td>" + results[i].vendedor + "</td>";
+    if(results[i].estatus == 1){
+      list_table += '<td class="pagada"><strong>Pagada</strong></td>';
+    }
+    if(results[i].estatus == 2 ){
+      list_table += '<td class="anulada"><strong>Anulada</strong></td>';
+    }
+    
+    list_table += "<td><strong>" + results[i].totalfactura + '</strong> <i class="fas fa-euro-sign"></i></td>';
     if(sessionStorage.getItem("rol") == "SuperAdmin"){
-      list_table += '<td>'+ results[i].usuario_id +'</td>';
+      if(results[i].Jefe == 0){
+        results[i].Jefe = "Autónomo";
+      }
+      list_table += '<td>'+ results[i].Jefe +'</td>';
       }
     list_table +=
-      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';
+      '<td><button type="button" onclick="timeoutclick()" class="btn_view view_factura" cl="'+ results[i].idcliente +'" f="'+ results[i].nofactura +'"><i class="fas fa-eye"></i></button> ';
+if(results[i].estatus == 1){
+  if(sessionStorage.getItem("rol") == "SuperAdmin"){
     list_table +=
-      '<a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
+    ' <button type="button" onclick="timeoutclick()" class="btn_anular anular_factura" f="'+ results[i].nofactura +'"><i class="fas fa-ban"></i></button>';
+  } 
+}else{
+  if(sessionStorage.getItem("rol") == "SuperAdmin"){
+    list_table +=
+    ' <button type="button" class="btn_anular inactive" f="'+ results[i].nofactura +'" disabled><i class="fas fa-ban"></i></button>';
+  }
+}
     list_table += "</td>";
     list_table += "</tr>";
+    
   }
   list_table += "</tbody>";
   list_table += "</table>";
@@ -139,7 +159,7 @@ connection.query($queryString, [idrol], (err, results) => {
   if(results){
     html =""
     console.log(results);
-    if(results[0].nuevoCli == 0){
+    if(results[0].nuevoVen == 0){
       document.getElementById("nuevo").style.display = "none";
     }
   }
@@ -226,12 +246,12 @@ function click() {
         });
       });
     });
-    $(".link_delete").click(function () {
+    $(".anular_factura").click(function () {
       //valores obtendra el dato del td por posciones [0]
       var ID = $(this).parents("tr").find("td")[0].innerHTML;
-      var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
-      var DNI = $(this).parents("tr").find("td")[2].innerHTML;
-      var Correo = $(this).parents("tr").find("td")[3].innerHTML;
+      var fecha = $(this).parents("tr").find("td")[1].innerHTML;
+      var cliente = $(this).parents("tr").find("td")[2].innerHTML;
+      var total = $(this).parents("tr").find("td")[5].innerHTML;
       var recuperar = "";
 
       recuperar += '<section id="containerEdit">';
@@ -241,16 +261,16 @@ function click() {
       recuperar += "	</div>";
       recuperar += "</div>";
       recuperar += '	 <div id="bodyEdit">';
-      recuperar += "		<h2>Borrar Cliente</h2>";
-      recuperar += '		<label for="Nombre">Nombre</label>';
+      recuperar += "		<h2>Cancelar Factura</h2>";
+      recuperar += '		<label for="Nombre">Fecha</label>';
       recuperar +=
-        '			<p id="name" name="nombre">' + Nombre + '</p>';
-      recuperar += '		<label for="dni">DNI</label>';
+        '			<p id="name" name="nombre">' + fecha + '</p>';
+      recuperar += '		<label for="dni">Cliente</label>';
       recuperar +=
-        '			<p id="dni" name="dni">' + DNI + '</p>';
-      recuperar += '		<label for="correo">Correo</label>';
+        '			<p id="dni" name="dni">' + cliente + '</p>';
+      recuperar += '		<label for="correo">Importe</label>';
       recuperar +=
-        '			<p id="correo" name="Correo">' + Correo + '</p>';
+        '			<p id="correo" name="Correo"><strong>' + total + '</strong></p>';
       recuperar += '<label for="password">Contraseña</label>';
       recuperar +=
         '<input type="password" id="password" name="password" placeholder="Verificar cambio con contraseña"></input>';
@@ -276,18 +296,8 @@ function click() {
             return console.log("An error ocurred with the query", err);
           }
           if (results[0].idusuario == idusu && results[0].clave == clave) {
-            $queryString =
-              "UPDATE cliente set estatus = 0 where idcliente= ?";
-
-            connection.query($queryString, [ID], (err, results) => {
-                if (err) {
-                  return console.log("An error ocurred with the query", err);
-                }
-                if (results) {
-                  location.reload();
-                }
-              }
-            );
+            //eliminar factura
+            anularFactura(ID);
           }
           var messerror =
             '<p class="msg_error">Error al actualizar el Usuario</p>';
@@ -295,9 +305,49 @@ function click() {
         });
       });
     });
-  });
+    //Ver factura
+    $(".view_factura").click(function(e){
+      e.preventDefault();
+      var codCliente = $(this).attr("cl");
+      var noFactura = $(this).attr("f");
+      generarPDF(codCliente, noFactura);
+
+    });
+  });//End ready
 }
 setTimeout("click()", 500);
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+function generarPDF(cliente, factura){
+  var ancho = 1000;
+  var alto = 800;
+  //calcular posicion x,y para centrar ventana
+  var x = parseInt((window.screen.width/2)-(ancho/2));
+  var y = parseInt((window.screen.height/2)-(alto/2));
 
+  $url = ruta + "PDF/generaFactura.php?cl="+ cliente + "&f="+ factura;
+  window.open($url,"Factura","left="+x+", top="+y+", height="+alto+
+  ", width="+ancho+", scrollbar=si, locacion=no, resizable=si,menubar=no");
+}
+function anularFactura(id){
+  var ID = id;
+  var action = "anularFactura";
+  console.log(ID);
+  $.ajax({
+    url: ruta + "ajax_ventas.php",
+    type: 'POST',
+    async: true,
+    data: {action:action,factura:ID},
+    success: function(response){
+      if(response == "Error"){
+        $(".alertModal").html("<b><p style='color: red;'>Error al anular la Factura</p></b>");
+      }else{
+        $(".alertModal").html("<b><p style='color: green;'>Factura Anulada</p></b>")
+        setTimeout(location.reload(), 1500);;
+      }
+    },
+    error: function(error){
+      console.log(error);
+    }
+  })
+}
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

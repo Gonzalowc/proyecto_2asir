@@ -20,10 +20,11 @@ var mysql = require("mysql");
     });
 }); */
 //===================================================
-
+var ip = "79.145.85.205";
+var ip = "localhost";
 var connection = mysql.createConnection({
-  host: "79.145.85.205",
-  port: "37182",
+  host: ip,
+//  port: "37182",
   user: "gonzalo",
   password: "123gonzalo123",
   database: "factura",
@@ -135,8 +136,6 @@ document.querySelector("#btnRegister").onclick = function () {
     alertRegister.style.display = "none";
 
     //=====================================================================
-    //==============================Consulta registrar==========================MySQL===============
-
     connection.connect((err) => {
       if (err) {
         return console.log(err.stack);
@@ -154,28 +153,8 @@ document.querySelector("#btnRegister").onclick = function () {
           return console.log("An error ocurred with the query MySQL", err);
         }
         console.log("Usuario añadido MySQL");
-        //===========================consulta registrar=========================SQLITE3=================
-        /* var db = new sqlite3.Database(
-          "./app/db/facture.db",
-          sqlite3.OPEN_READWRITE,
-          (err) => {
-            if (err) {
-              console.error(err.message);
-            }
-            db.serialize(() => {
-              db.each(
-                `INSERT INTO usuario (nombre, correo, usuario, clave) VALUES (?,?,?,?)`,
-                [nameUser, emailNewUser, name, codePass],
-                (err) => {
-                  if (err) {
-                    return console.error(err.message);
-                  }
-                }
-              );
-              return console.log("Usuario añadido SQlite3");
-            });
-          }
-        ); */
+        location.reload();
+        
       }
     );
     //=====================================================================

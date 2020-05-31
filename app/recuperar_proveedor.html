@@ -25,7 +25,7 @@
 				<span>|</span>
 				<span id="user"><div id="userUsuario"><script type="text/javascript">if(sessionStorage.getItem("usuario")){document.getElementById('userUsuario').innerHTML = sessionStorage.getItem("usuario");}else{document.getElementById('userUsuario').innerHTML = "Usuario"}</script></div>
 					<div id="userRol"><script type="text/javascript">if(sessionStorage.getItem("rol")){document.getElementById('userRol').innerHTML = sessionStorage.getItem("rol");}else{document.getElementById('userRol').innerHTML = "Rol"}</script></div></span>
-					<a id="editUser" href="editar_localUser.html"></a>
+					<a ondragstart="dragstart_handler(event);" id="editUser" href="editar_localUser.html"></a>
               <script>
                 var foto = sessionStorage.getItem("fotoPerfil");
                 var enlace = "";
@@ -33,7 +33,7 @@
                     document.querySelector("#editUser").innerHTML = enlace;
               </script>
           </a>
-				<a id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
+				<a ondragstart="dragstart_handler(event);" id="exit" href="../index.html" ><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
 		</div>
 

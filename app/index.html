@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/all.js"></script>
+    
     <title>Sisteme Ventas</title>
     <script
       src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" data-auto-replace-svg="nest"></script>
@@ -46,7 +47,7 @@
                 }
               </script>
             </div></span>
-            <a id="editUser" href="editar_localUser.html"></a>
+            <a ondragstart="dragstart_handler(event);" id="editUser" href="editar_localUser.html"></a>
               <script>
                 var foto = sessionStorage.getItem("fotoPerfil");
                 var enlace = "";
@@ -54,7 +55,7 @@
                     document.querySelector("#editUser").innerHTML = enlace;
               </script>
           </a>
-          <a id="exit" href="../index.html">
+          <a ondragstart="dragstart_handler(event);" id="exit" href="../index.html">
             <img
               class="close"
               src="img/salir.png"
@@ -77,11 +78,276 @@
     </div>
     <!-- fin header -->
     <section id="container">
-      <h1><i class="fab fa-algolia"></i> Bienvenido al sistema</h1>
       <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      
+      <div class="divContainer">
+        <div>
+          <h1 class="titlePanelControl">Panel de control</h1>
+        </div>
+        <div class="dashboard">
+        
+          <a ondragstart="dragstart_handler(event);" id="usuario" href="lista_usuario.html">
+            <i class="fas fa-users"></i>
+            <p>
+              <strong>Usuarios</strong><br>
+              <span id="intUser"></span><br>
+              <span id="intUserA" style="color: green;"></span><br>
+              <span id="intUserI" style="color: red;"></span>
+            </p>
+          </a>
+          
+          <a ondragstart="dragstart_handler(event);" id="cliente" href="lista_cliente.html">
+            <i class="fas fa-user"></i>
+            <p>
+              <strong>Clientes</strong><br>
+              <span id="intCl"></span><br>
+              <span id="intClA" style="color: green;"></span><br>
+              <span id="intClI" style="color: red;"></span>
+            </p>
+          </a>
+          <a ondragstart="dragstart_handler(event);" id="proveedor" href="lista_proveedor.html">
+            <i class="far fa-building"></i>
+            <p>
+              <strong>Proveedores</strong><br>
+              <span id="intPv"></span>
+            </p>
+          </a>
+          <a ondragstart="dragstart_handler(event);" id="producto" href="lista_productos.html">
+            <i class="fas fa-cubes"></i>
+            <p>
+              <strong>Productos</strong><br>
+              <span id="intP"></span>
+            </p>
+          </a>
+          <a ondragstart="dragstart_handler(event);" id="venta" href="lista_venta.html">
+            <i class="fas fa-receipt"></i>
+            <p>
+              <strong>Ventas</strong><br>
+              <span id="intV"></span><br>
+              <span id="intVA" style="color: green;"></span><br>
+              <span id="intVI" style="color: red;"></span>
+            </p>
+          </a>
+          <a ondragstart="dragstart_handler(event);" id="ventados" href="lista_venta.html">
+            <i class="fas fa-receipt"></i>
+            <p>
+              <strong>Ventas Hoy</strong><br>
+              <span id="intVH"></span><br>
+              <span id="intVHA" style="color: green;"></span><br>
+              <span id="intVHI" style="color: red;"></span>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="divInfoSystem">
+        <div>
+          <h1 class="titlePanelControl">Configuración</h1>
+        </div>
+        <div class="containerPerfil">
+          <div class="containerDataUser">
+            <div class="logoUser">
+              <a ondragstart="dragstart_handler(event);" href="./editar_localUser.html" id="User" style="background-color: transparent;"></a>
+              <img src="./img/user-index.png"  alt="Logo">
+            </div><br>
+            <div class="divDataUser">
+              <h4>Información Personal</h4>
+              <div>
+                <label>Nombre: </label><span id="usrNombre"></span>
+              </div>
+              <div>
+                <label for="">Correo: </label><span id="usrEmail"></span>
+              </div>
+              <h4>Datos usuario</h4>
+              <div>
+                <label>Rol: </label><span id="usrRol"></span>
+              </div>
+              <div>
+                <label>Usuario: </label><span id="usrUsuario"></span>
+              </div>
+              <a ondragstart="dragstart_handler(event);" class="btn_save" href="./editar_localUser.html">Modificar datos</a>
+            </div>
+          </div>
+
+        <!-- ROLES -->
+          <div class="containerRoles">
+            <div class="alertFormRol alert" id="alertRol" style="display: none;"></div>
+            <label for="roles">Roles</label>
+           <select name="roles" onload="Roles();" id="roles" onchange="Roles()"></select>
+          <table>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="Ini" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Inicio</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="NUsu" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Nuevo Usuario</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="LUsu" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Lista Usuarios</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="RUsu" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Recuperar Usuarios</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="NCli" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Nuevo Cliente</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="LCli" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Lista Clientes</span>
+              </td></tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="RCli" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Recuperar Clientes</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="NProv" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Nuevo Proveedor</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="LProv" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Lista proveedores</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="RProv" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Recuperar proveedores</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="NProd" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Nuevo Producto</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="LProd" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Lista productos</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="RProd" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Recuperar productos</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="NVen" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Nueva Venta</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="switch">
+                  <input id="LVen" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Listado Ventas</span><br>
+              </td>
+              <td>
+                <label class="switch">
+                  <input id="LOProd" type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+                <span class="question">Listado Productos</span>
+              </td>
+            </tr>
+          </table> 
+          <button class="btn_save" id="Role">Guardar Configuración</button>           
+        </div>
+        <!-- FIN ROLES -->
+          <div class="containerDataEmpresa">
+            <div class="logoEmpresa">
+              <img src="../img/login.png" alt="Logo">
+            </div>
+            <h4>Datos de la empresa</h4>
+            <div class="alertFormEmpresa alert" style="display: none;"></div>
+            <input type="hidden" id="action" value="updateDataEmpresa">
+            <div>
+              <label for="txtNIF">NIF: </label>
+              <input type="text" name="txtNIF" id="txtNIF" placeholder="NIF de la empresa" value="" required>
+            </div>
+            <div>
+              <label for="txtNombre">Nombre: </label>
+              <input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre de la empresa" value="" required>
+            </div>
+            <div>
+              <label for="txtRSocial">Razón Social: </label>
+              <input type="text" name="txtRSocial" id="txtRSocial" placeholder="Razón Social" value="" required>
+            </div>
+            <div>
+              <label for="intTelefono">Teléfono: </label>
+              <input type="number" name="intTelefono" id="intTelefono" placeholder="Teléfono" value="" required>
+            </div>
+            <div>
+              <label for="txtEmail">Email: </label>
+              <input type="email" name="txtEmail" id="txtEmail" placeholder="Correo Electrónico" value="" required>
+            </div>
+            <div>
+              <label for="txtDireccion">Dirección: </label>
+              <input type="text" name="txtDireccion" id="txtDireccion" placeholder="Dirección Física" value="" required>
+            </div>
+            <div>
+              <label for="intIVA">IVA (%): </label>
+              <input type="number" min="0" max="100" name="intIVA" id="intIVA" placeholder="IVA(x%)" value="" required>
+            </div>
+            
+            <div>
+              <button type="submit" id="config" class="btn_save btnChangePass"><i class="far fa-save fa-lg"></i> Guardar Datos</button>
+            </div>
+          </div> 
+      </div>
       <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
     </section>
+    <script type="text/javascript" src="./js/inicio.js"></script>
     <script type="text/javascript" src="./js/header.js"></script>
   </body>
 </html>

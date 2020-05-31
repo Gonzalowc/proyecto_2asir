@@ -71,7 +71,7 @@ connection.query($queryString, [jefe], (err, results) => {
     list_table += "<td>" + results[i].Jefe + "</td>";
     list_table += "<td>" + results[i].rol + "</td>";
     list_table +=
-      '<td><a onclick="timeoutclick()" class="link_recu" id="link_recu" href="#"><i class="far fa-edit"></i> Recuperar</a>';
+      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_recu" id="link_recu" href="#"><i class="far fa-edit"></i> Recuperar</a>';
     list_table += "</td>";
     list_table += "</tr>";
   }

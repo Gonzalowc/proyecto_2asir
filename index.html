@@ -25,7 +25,7 @@
                 <h2>Iniciar Sesión</h2>
                 <div id="alertEmailLogin" style="display: none;"></div>
                 <input type="email" id="emailUser" name="emailUser" placeholder="Correo Electrónico">
-                <p>¿No tiene cuenta?<a href="#" id="linkCreateAccount">Cree una.</a></p>
+                <p>¿No tiene cuenta?<a ondragstart="dragstart_handler(event);" href="#" id="linkCreateAccount">Cree una.</a></p>
                 <div class="divButton divBtnLogin">
                     <button type="button" id="btnNextPass" class="btnFormLogin">Siguiente</button>
                 </div>
@@ -38,7 +38,7 @@
                 <div id="alertPass" style="display: none;"></div>
                 <input type="password" id="passUser" name="passUser" placeholder="Contraseña" required>
                 <label><input type="checkbox" name="sessionTrue" value="True">Mantener la sesión iniciada</label>
-                <a href="#" id="linkRecoveryPass">¿Olvidó su contraseña?</a>
+                <a ondragstart="dragstart_handler(event);" href="#" id="linkRecoveryPass">¿Olvidó su contraseña?</a>
                 <div class="divButton">
                     <button type="button" id="btnLogin" href="" class="btnFormLogin">Iniciar sesión</button>
                 </div>

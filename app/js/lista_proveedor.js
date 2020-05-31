@@ -4,11 +4,6 @@ var dt = require("datatables.net")(window, $);
 //Paginador
 var rol = sessionStorage.getItem("idrol");
 //==================listar usuarios
-if(rol > 2){
-document.getElementById("new").style.display = "none"; 
-
-}
-
 function timeoutclick() {
   click();
 }
@@ -48,18 +43,18 @@ connection.query($queryString, (err, results) => {
     list_table += "<td>" + results[i].email + "</td>";
     if(sessionStorage.getItem("idrol") == 1 ||sessionStorage.getItem("idrol") == 2){
     list_table +=
-      '<td><a onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
+      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
       list_table +=
-      '<a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a ondragstart="dragstart_handler(event);" class="link_info" href="index.html"><i class="far fa-edit"></i> Información</a> ';  
     }else{
       list_table +=
-      '<td><a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<td><a ondragstart="dragstart_handler(event);" class="link_info" href="index.html"><i class="far fa-edit"></i> Información</a> ';  
       
     }
     
       if(rol < 3){
         list_table +=
-      '| <a onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
+      '| <a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
         }
     list_table += "</td>";
     list_table += "</tr>";
@@ -131,7 +126,20 @@ $("#maxRows").on("change", function () {
     });
   });
 });
-
+var idrol = sessionStorage.getItem("idrol")
+$queryString = "select * from rol where idrol = ?";
+connection.query($queryString, [idrol], (err, results) => {
+  if(err){
+    return console.log("An error ocurred with the query", err);
+  }
+  if(results){
+    html =""
+    console.log(results);
+    if(results[0].nuevoProv == 0){
+      document.getElementById("nuevo").style.display = "none";
+    }
+  }
+});
 function click() {
   $(document).ready(function () {
     $(".link_delete").click(function () {

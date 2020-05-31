@@ -278,7 +278,6 @@ table td {
 .link_add {
   background: #6e83e5;
   color: #193ee7;
-
   padding: 5px 5px;
   border-radius: 6px;
 }
@@ -346,45 +345,13 @@ table td {
   padding: 20px 50px;
   border: 0;
 }
-/*==========================PAGINADOR================================*/
-/* #paginador{
-	width: 50%;
-    padding: 15px;
-    list-style: none;
-    background:  #fff;
-    margin-top: 15px;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	border-radius: 50px;
-	
-}
-.paginador a, .page_selected{
-	color: #428bca;
-	border: 1px solid #ddd;
-	padding: 5px;
-	display: inline-block;
-	font-size: 14px;
-	text-align: center;
-	width: 30px;
-	border: 0;
-	border-radius: 100%;
-}*/
+
 #paginador a:hover {
   background: #ddd;
   padding: 10px;
   border-radius: 100px;
   text-decoration: none;
-} /*
-.page_selected{
-	color: #fff;
-	background: #428bca;
-	border: 1px solid #428bca; 
-} */
+} 
 #paginador {
   min-width: 200px;
   margin: 0 auto;
@@ -648,13 +615,13 @@ table td {
   text-align: left;
 }
 .btn_anular {
-  background-color: #f36a6a;
+  background: #f36a6a;
   border: 0;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px 5px;
   margin: 0 3px;
-  color: #fff;
+  color: rgb(201, 30, 30);
 }
 @media (max-width: 750px) {
   .title {
@@ -820,12 +787,13 @@ font-weight: bolder;
   border: 4px dotted black;
   height: 45vh;
 }
-.imgPerfil{
+.imgPerfil, #User{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;
+  background-color: #a7a7a7;
   
 }
 #formPerfil{
@@ -881,7 +849,210 @@ font-weight: bolder;
 #formPerfil h1{
   margin-top: 15px;
   margin-left: 45%;
-  margin-bottom: 15px;
+  margin-bottom: 15px; 
+}
+.btn_view{
+  background: #56d1ec;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px 5px;
+  color: rgb(71, 121, 230);
+}
+.pagada, .anulada{
+  color: #60a756;
+  /* background-color: #60a756; */
+  text-align: center;
+  border-radius: 6px;
+  /* padding: 5px 5px; */
+}
+.anulada {
+  color: #f36a6a;
+}
+.inactive{
+  background-color: #A4A4A4;
+  color: #CCC;
+  cursor: default;
+}
+/* ============================= PANEL DE CONTROL ====================== */
+.titlePanelControl{
+  width: 100%;
+  background: #FFF;
+  padding: 5px 15px;
+  margin-bottom: 10px !important;
+  color: #0A4661;
+}
+.divContainer{
+  margin-bottom: 20px;
+}
+.dashboard{
+  display: webkit-flex;
+  display: moz-fle;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+}
+.dashboard a{
+  color: #898989;
+  width: calc(100% / 6);
+  padding: 20px;
+  background-color: #FFF;
+  font-size: 25px;
+  text-align: center;
+}
+.dashboard p{
+  color: #3279a7;
+}
+.dashboard a span{
+  font-weight: bold;
+  font-size: 14pt;
+}
+.containerPerfil{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  justify-content: space-around;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.containerDataUser, .containerDataEmpresa{
+  width: 400px;
+  background-color: #FFF;
+  padding: 20px;
+}
+.containerRoles{
+  width: 600px;
+  background-color: #FFF;
   
 }
-
+.logoUser, .logoEmpresa{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin: 20px auto;
+  padding: 25px;
+  background: #E9E9E9;
+}
+.logoUser img{
+  width: 100%;
+  height: 100%;
+}
+.logoEmpresa img{
+    width: 200%;
+    height: 200%;
+}
+.divDataUser{
+  padding: 10px;
+  margin: auto;
+}
+.divInfoSystem h4{
+  background: #3279a7;
+  padding: 5px 10px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.divDataUser > div{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+.divDataUser label{
+  width: 150px;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.divDataUser span{
+  padding: 5px;
+}
+.divInfoSystem .btn_save{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  align-items: center;
+}
+/* INTERUPTORES PARA ROLES */
+    /* Formateamos el label que servirá de contenedor */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+     
+    /* Ocultamos el checkbox html */
+    .switch input {
+      display:none;
+    }
+     
+    /* Formateamos la caja del interruptor sobre la cual se deslizará la perilla de control o slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+     
+    /* Pintamos la perilla de control o slider usando el selector before */
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+     
+    /* Cambiamos el color de fondo cuando el checkbox esta activado */
+    input:checked + .slider {
+      background-color: rgb(36, 78, 196);
+    }
+     
+    /* Deslizamos el slider a la derecha cuando el checkbox esta activado */ 
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+     
+    /* Aplicamos efecto de bordes redondeados en slider y en el fondo del slider */
+    .slider.round {
+      border-radius: 34px;
+    }
+     
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    span.question {
+      display: inline-block;
+      vertical-align: 100%;
+      margin-left: 15px;
+      font-weight: 900;
+      
+    }

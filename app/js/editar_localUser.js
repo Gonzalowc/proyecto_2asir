@@ -1,6 +1,7 @@
 // Jquery
 var $ = require("jquery");
-var ip = "79.145.85.205";
+//var ip = "79.145.85.205";
+var ip = "localhost";
 var Uimg= "http://"+ip+"/proyecto/img/profiles/";
 var Uindex = "http://"+ip+"/proyecto/";
 var idusu = sessionStorage.getItem("idusuario");

@@ -77,7 +77,7 @@ connection.query($queryString, [vendedor], (err, results) => {
         list_table += '<td>'+ results[i].usuario_id +'</td>';
         }
       list_table +=
-        '<td><a onclick="timeoutclick()" class="link_recu" href="#"><i class="far fa-trash-alt"></i> Recuperar</a>';
+        '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_recu" href="#"><i class="far fa-trash-alt"></i> Recuperar</a>';
         list_table += "</td>";
         list_table += "</tr>";
       }

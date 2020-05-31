@@ -1,4 +1,5 @@
-var ip = "79.145.85.205";
+//var ip = "79.145.85.205";
+var ip ="localhost";
 var Uindex = "http://"+ip+"/proyecto/";
 //=================IMAGEN
 $("#foto").on("change",function(){
@@ -42,7 +43,7 @@ $('.delPhoto').click(function(){
 });
 //::::::::::::::::::FIN IMAGEN
 //===============Proveedores=============================
-$queryString = "SELECT codproveedor, proveedor, estatus FROM proveedor WHERE estatus=1 ORDER BY proveedor ASC";
+$queryString = "SELECT codproveedor, proveedor FROM proveedor WHERE estatus=1 ORDER BY proveedor ASC";
 
 connection.query($queryString, (err, results) => {
   if (err) {

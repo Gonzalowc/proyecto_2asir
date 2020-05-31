@@ -30,7 +30,7 @@ connection.query($queryString, [rol], (err, results) => {
 var list_table = "";
 if (sessionStorage.getItem("rol") == "SuperAdmin") {
   $queryString =
-    "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol, r.idrol FROM usuario u INNER JOIN rol r ON r.idrol=u.rol WHERE estatus=? ORDER BY u.idusuario";
+    "SELECT u.idusuario, u.nombre, u.correo, u.usuario, u.Jefe, r.rol, r.idrol FROM usuario u INNER JOIN rol r ON r.idrol=u.rol WHERE estatus=? ORDER BY u.idusuario";
   jefe = 1;
 } else {
   $queryString =
@@ -45,6 +45,9 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += '<table id="tblDatos">';
   list_table += "<thead>";
   list_table += "<tr><th></th>";
+  if(sessionStorage.getItem("rol")== "SuperAdmin"){
+    list_table += '<th></th>';
+  }
   list_table += "<th></th><th></th><th></th><th></th>";
   list_table +=
     '<th><input type="text" name="busqueda" id="busqueda" placeholder="Buscar"></th><tr>';
@@ -53,6 +56,9 @@ connection.query($queryString, [jefe], (err, results) => {
   list_table += "<th>Usuario</th>";
   list_table += "<th>Correo</th>";
   list_table += "<th>Rol</th>";
+if(sessionStorage.getItem("rol")== "SuperAdmin"){
+    list_table += '<th>Jefe</th>';
+}
   list_table += "<th>Acciones</th>";
   list_table += "</tr>";
   list_table += "</thead>";
@@ -64,10 +70,13 @@ connection.query($queryString, [jefe], (err, results) => {
     list_table += "<td>" + results[i].usuario + "</td>";
     list_table += "<td>" + results[i].correo + "</td>";
     list_table += "<td>" + results[i].rol + "</td>";
+    if(sessionStorage.getItem("rol")== "SuperAdmin"){
+      list_table += '<td>'+ results[i].Jefe +'</td>';
+      }
     if(sessionStorage["idrol"]< results[i].idrol || sessionStorage["idrol"]< 3){
     if(sessionStorage["idrol"] < results[i].idrol ||  sessionStorage["idrol"]< 3){
       list_table +=
-      '<td><a onclick="timeoutclick();" class="link_edit" id="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';
+      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick();" class="link_edit" id="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';
     }else{
       list_table += '<td>';
     }
@@ -75,7 +84,7 @@ connection.query($queryString, [jefe], (err, results) => {
       list_table +='';
     }else{
       list_table +=
-      '| <a onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
+      '| <a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
     }
        }else{
       list_table +='<td>';
@@ -150,7 +159,20 @@ $("#maxRows").on("change", function () {
     });
   });
 });
-
+var idrol = sessionStorage.getItem("idrol")
+$queryString = "select * from rol where idrol = ?";
+connection.query($queryString, [idrol], (err, results) => {
+  if(err){
+    return console.log("An error ocurred with the query", err);
+  }
+  if(results){
+    html =""
+    console.log(results);
+    if(results[0].nuevoUsu == 0){
+      document.getElementById("nuevo").style.display = "none";
+    }
+  }
+});
 function click() {
   $(document).ready(function () {
     $(".link_edit").click(function () {

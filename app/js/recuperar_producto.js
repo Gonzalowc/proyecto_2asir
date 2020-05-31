@@ -2,7 +2,8 @@
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
 //Paginador
-var ip = "79.145.85.205";
+//var ip = "79.145.85.205";
+var ip ="localhost";
 var rol = sessionStorage.getItem("idrol");
 var rutaIMG = "http://"+ip+"/proyecto/img/products/";
 //==================listar usuarios
@@ -60,18 +61,18 @@ connection.query($queryString, (err, results) => {
 
     if(sessionStorage.getItem("idrol") == 1 ||sessionStorage.getItem("idrol") == 2){
     list_table +=
-      '<a onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
+      '<a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
       list_table +=
-      '<a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a ondragstart="dragstart_handler(event);" class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
     }else{
       list_table +=
-      '<a class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a ondragstart="dragstart_handler(event);" class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
       
     }
     
       if(rol < 3){
         list_table +=
-      '| <a onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Recuperar</a>';
+      '| <a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Recuperar</a>';
         }
     list_table += "</td>";
     list_table += "</tr>";
@@ -236,7 +237,7 @@ function click() {
       recuperar += '   <div id="buttons">';
       recuperar += '			<button type="button" class="btn_cancel">Atrás</button>';
       recuperar += '			<button type="button" class="btn_save">Registrar</button>';
-      recuperar += '			<a type="button" class="btn_ok">Editar Producto</a>';
+      recuperar += '			<a ondragstart="dragstart_handler(event);" type="button" class="btn_ok">Editar Producto</a>';
       recuperar += "		</div> ";
       recuperar += "	</div>";
       recuperar += "</section>";

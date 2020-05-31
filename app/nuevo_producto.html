@@ -50,7 +50,7 @@
               </script>
             </div></span
           >
-          <a id="editUser" href="editar_localUser.html"></a>
+          <a ondragstart="dragstart_handler(event);" id="editUser" href="editar_localUser.html"></a>
               <script>
                 var foto = sessionStorage.getItem("fotoPerfil");
                 var enlace = "";
@@ -58,7 +58,7 @@
                     document.querySelector("#editUser").innerHTML = enlace;
               </script>
           </a>
-          <a id="exit" href="../index.html"
+          <a ondragstart="dragstart_handler(event);" id="exit" href="../index.html"
             ><img
               class="close"
               src="img/salir.png"
