@@ -1,53 +1,16 @@
-//Require sqlite3
-/* var sqlite3 = require("sqlite3").verbose();
-var path = require("path"); */
-//require MySQL
 var mysql = require("mysql");
 //===================================================
-/* ar db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  db.serialize(() => {
-      db.each(`SELECT correo as correo,
-                      clave as clave
-               FROM usuario`, (err, row) => {
-        if (err) {
-          console.error(err.message);
-        }
-        console.log(row.correo + "\t" + row.clave);
-      });
-    });
-}); */
-//===================================================
 var ip = "79.145.85.205";
-var ip = "localhost";
+//var ip = "localhost";
 var connection = mysql.createConnection({
   host: ip,
-//  port: "37182",
+  port: "37182",
   user: "gonzalo",
   password: "123gonzalo123",
   database: "factura",
 });
 //Hash password
 var md5 = require("md5");
-//················································
-/* var db = new sqlite3.Database('./app/db/facture.db', sqlite3.OPEN_READWRITE, (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    db.serialize(() => {
-        db.each(`SELECT correo as correo,
-                        clave as clave
-                 FROM usuario`, (err, row) => {
-          if (err) {
-            console.error(err.message);
-          }
-          console.log(row.correo + "\t" + row.clave);
-        });
-      });
-  }); */
-
 //====================Inicio sesion=================
 document.querySelector("#btnLogin").onclick = function () {
   const strEmailUser = document.querySelector("#emailUser").value;
@@ -106,7 +69,6 @@ document.querySelector("#btnLogin").onclick = function () {
   connection.end(() => {
     console.log("connection succesfully closed");
   });
-  //==================
 };
 
 //==========================Registrar ====================================================================================
@@ -153,8 +115,9 @@ document.querySelector("#btnRegister").onclick = function () {
           return console.log("An error ocurred with the query MySQL", err);
         }
         console.log("Usuario añadido MySQL");
-        location.reload();
-        
+        alertRegister.innerHTML =
+      '<b><p style="color: Green;">Usuario Registrado. Inicie Sesión</p></b>';
+        alertRegister.style.display = "block";       
       }
     );
     //=====================================================================

@@ -5,11 +5,11 @@ var md5 = require("md5");
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-//var ip = "79.145.85.205";
-var ip = "localhost";
+var ip = "79.145.85.205";
+//var ip = "localhost";
 var Uimg = "http://" + ip + "/proyecto/img/profiles/";
 var ruta = "http://" + ip + "/proyecto/";
-//laskjdlaskjdasd
+
 function dragstart_handler(ev) {
   console.log(
     "dragStart: dropEffect = " +
@@ -181,7 +181,6 @@ connection.query($queryString, (err, results) => {
     return console.log("An error ocurred with the query", err);
   }
   if (results) {
-    console.log(results);
     let i = 0;
     let rol = "";
     for (i; i < results.length; i++) {
@@ -332,7 +331,6 @@ $("#Role").click(function (e) {
             return console.log("An error ocurred with the query", err);
           }
           if (results) {
-            console.log("ganado2");
             $(".alertFormRol").html(
               "<b><p style='color: green;' class='msg_save'>Rol " +
                 results[0].rol +

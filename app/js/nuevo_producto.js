@@ -1,5 +1,5 @@
-//var ip = "79.145.85.205";
-var ip ="localhost";
+var ip = "79.145.85.205";
+//var ip ="localhost";
 var Uindex = "http://"+ip+"/proyecto/";
 //=================IMAGEN
 $("#foto").on("change",function(){

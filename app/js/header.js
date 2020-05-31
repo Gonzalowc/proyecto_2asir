@@ -1,6 +1,4 @@
-//require jquery datatable
 var $ = require("jquery");
-var dt = require("datatables.net")(window, $);
 //:::
 var idrol = sessionStorage.getItem("idrol")
 $queryString = "select * from rol where idrol = ?"
@@ -108,7 +106,8 @@ if(results[0].listaVen == 1){
   html += '<li><a ondragstart="dragstart_handler(event);" href="lista_venta.html"><i class="fas fa-receipt"></i> Lista de Facturas</a></li>';
 }
 if(results[0].listadoProductos == 1){
- html += '<li><a ondragstart="dragstart_handler(event);" href="prueba_productos.html">Lista producto</a></li>'; 
+
+ html += '<li><a ondragstart="dragstart_handler(event);" href="prueba_productos.html" id="lista_producto">Lista producto</a></li>'; 
 }
 if((results[0].nuevoVen == 1) || (results[0].listaVen == 1) || (results[0].listadoProductos == 1)) {
 html += '</ul></li>';
@@ -116,8 +115,12 @@ html += '</ul></li>';
 document.getElementById("navegator").innerHTML = html;
   
  } 
+ 
 });
 document.getElementById("exit").onclick = function () {
   sessionStorage.clear();
 };
+
+
+
 

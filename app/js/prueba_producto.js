@@ -1,5 +1,5 @@
-//var ip = "79.145.85.205";
-var ip = "localhost";
+var ip = "79.145.85.205";
+//var ip = "localhost";
 var rutaIMG = "http://"+ ip +"/proyecto/img/products/";
 $queryString = "SELECT p.codproducto, p.producto, p.descripcion, p.precio, p.existencia, pv.proveedor,p.foto FROM producto p, proveedor pv WHERE p.proveedor = pv.codproveedor ORDER BY p.codproducto NOT IN ( SELECT p.codproducto FROM detallefactura d, producto p, proveedor pv WHERE d.codproducto= p.codproducto AND p.proveedor = pv.codproveedor GROUP BY d.codproducto ORDER BY sum(cantidad) desc)";
 connection.query($queryString, (err, results) => {

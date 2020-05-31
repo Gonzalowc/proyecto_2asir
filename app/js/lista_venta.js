@@ -1,8 +1,8 @@
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-//var ip = "79.145.85.205";
-var ip = "localhost";
+var ip = "79.145.85.205";
+//var ip = "localhost";
 var ruta = "http://"+ ip+"/proyecto/";
 //Paginador
 var jefe = sessionStorage.getItem("idusuario");

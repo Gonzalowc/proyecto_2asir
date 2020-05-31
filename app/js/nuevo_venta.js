@@ -1,5 +1,6 @@
 var md5 = require("md5");
 var ip = "79.145.85.205";
+//var ip = "localhost";
 var Uri = "http://"+ ip+"/proyecto/";
 var vendedor = sessionStorage.getItem("nombre");
 

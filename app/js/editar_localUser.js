@@ -1,7 +1,7 @@
 // Jquery
 var $ = require("jquery");
-//var ip = "79.145.85.205";
-var ip = "localhost";
+var ip = "79.145.85.205";
+//var ip = "localhost";
 var Uimg= "http://"+ip+"/proyecto/img/profiles/";
 var Uindex = "http://"+ip+"/proyecto/";
 var idusu = sessionStorage.getItem("idusuario");
@@ -53,7 +53,7 @@ $(".btnPerfil").click(function () {
   recuperar += '      <div id="buttons">';
   recuperar += '   	    <button type="button" class="btn_cancel">Atrás</button>';
   recuperar +=
-    '   	    <button type="button" class="btn_save">Restaurar</button>';
+    '   	    <button type="button" class="btn_save">Guardar</button>';
   recuperar += '      </div> ';
   recuperar += '   </div>';
   recuperar += '</section>';
@@ -77,7 +77,7 @@ const fotoP = sessionStorage.getItem("img");
             .then(decodificado => {
                 console.log(decodificado);
             });
-            location.reload();
+            window.location = "./index.html";
     } else {
         // El usuario no ha seleccionado archivos
         alert("Selecciona un archivo");
@@ -102,7 +102,7 @@ $(".btnSave").click(function () {
           return console.log("An error ocurred with the query", err);
         }
         if (results) {
-          location.reload();
+          window.location = "./index.html";
         }
       }
     );
@@ -123,7 +123,7 @@ $(".btnSave").click(function () {
     recuperar +=
       '   	    <button type="button" class="btn_cancel">Atrás</button>';
     recuperar +=
-      '   	    <button type="button" id="btn_save" >Restaurar</button>';
+      '   	    <button type="button" id="btn_save" >Guardar</button>';
     recuperar += "      </div> ";
     recuperar += "   </div>";
     recuperar += "</section>";
@@ -145,7 +145,7 @@ $(".btnSave").click(function () {
             return console.log("An error ocurred with the query", err);
           }
           if (results) {
-            location.reload();
+            window.location = "./index.html";
           }
         }
       );

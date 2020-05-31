@@ -1,6 +1,3 @@
-//Prueba
-/* const app = require('app'); *///no va aqui conflicto
-
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
   // squirrel event handled and app will exit in 1000ms, so don't do anything else
@@ -78,7 +75,7 @@ function createWindow() {
     },
     slashes: true,
   });
-  /* win.setMenu(null); */
+  win.setMenu(null);
   // and load the index.html of the app.
   win.loadFile("index.html");
   

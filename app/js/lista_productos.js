@@ -1,8 +1,8 @@
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-//var ip = "79.145.85.205";
-var ip = "localhost";
+var ip = "79.145.85.205";
+//var ip = "localhost";
 //Paginador
 var rol = sessionStorage.getItem("idrol");
 var rutaIMG = "http://"+ ip+"/proyecto/img/products/";
