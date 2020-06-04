@@ -61,10 +61,8 @@ function handleSquirrelEvent() {
       return true;
   }
 };
-//Fin prueba
 
-const { app, BrowserWindow } = require("electron"); //no va aqui conflicto
-
+const { app, BrowserWindow } = require("electron");
 function createWindow() {
   // Crea la ventana del navegador.
   const win = new BrowserWindow({
@@ -75,7 +73,7 @@ function createWindow() {
     },
     slashes: true,
   });
-  win.setMenu(null);
+  /* win.setMenu(null); */
   // and load the index.html of the app.
   win.loadFile("index.html");
   

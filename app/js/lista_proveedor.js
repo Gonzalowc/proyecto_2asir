@@ -36,16 +36,16 @@ connection.query($queryString, (err, results) => {
   for (i = 0; i < results.length; i++) {
     list_table += "<tr>";
     list_table += "<td>" + results[i].codproveedor + "</td>";
-    list_table += "<td>" + results[i].proveedor + "</td>";
-    list_table += "<td>" + results[i].contacto + "</td>";
+    list_table += "<td  style='max-width: 300px;'>" + results[i].proveedor + "</td>";
+    list_table += "<td  style='max-width: 300px;'>" + results[i].contacto + "</td>";
     list_table += "<td>" + results[i].telefono + "</td>";
-    list_table += "<td>" + results[i].direccion + "</td>";
+    list_table += "<td  style='max-width: 300px;'>" + results[i].direccion + "</td>";
     list_table += "<td>" + results[i].email + "</td>";
     if(sessionStorage.getItem("idrol") == 1 ||sessionStorage.getItem("idrol") == 2){
     list_table +=
-      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
+      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';  
       list_table +=
-      '<a ondragstart="dragstart_handler(event);" class="link_info" href="index.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a ondragstart="dragstart_handler(event);" class="link_info" href="index.html" style="display:none;"><i class="far fa-edit"></i> Información</a> ';  
     }else{
       list_table +=
       '<td><a ondragstart="dragstart_handler(event);" class="link_info" href="index.html"><i class="far fa-edit"></i> Información</a> ';  

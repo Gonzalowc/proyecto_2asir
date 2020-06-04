@@ -42,8 +42,8 @@ connection.query($queryString, (err, results) => {
   for (i = 0; i < results.length; i++) {
     list_table += "<tr>";
     list_table += "<td>" + results[i].codproducto + "</td>";
-    list_table += "<td>" + results[i].producto + "</td>";
-    list_table += "<td>" + results[i].descripcion + "</td>";
+    list_table += "<td style='max-width: 300px;'>" + results[i].producto + "</td>";
+    list_table += "<td style='max-width: 300px;'>" + results[i].descripcion + "</td>";
     list_table += "<td>" + results[i].proveedor + "</td>";
     list_table += "<td>" + results[i].precio + "</td>";
     list_table += "<td>" + results[i].existencia + "</td>";
@@ -56,11 +56,11 @@ connection.query($queryString, (err, results) => {
       })
     })
 
-    if(sessionStorage.getItem("idrol") == 1 ||sessionStorage.getItem("idrol") == 2){
+    if(sessionStorage.getItem("idrol") == 1 || sessionStorage.getItem("idrol") == 2){
     list_table +=
-      '<a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> | ';  
+      '<a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';  
       list_table +=
-      '<a ondragstart="dragstart_handler(event);" class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  
+      '<a ondragstart="dragstart_handler(event);" class="link_info" href="perfil_empresa.html" style="display:none;"><i class="far fa-edit"></i> Información</a> ';  
     }else{
       list_table +=
       '<a ondragstart="dragstart_handler(event);" class="link_info" href="perfil_empresa.html"><i class="far fa-edit"></i> Información</a> ';  

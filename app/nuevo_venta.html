@@ -95,8 +95,8 @@
                 <div class="wd50">
                     <label>Acciones</label>
                     <div id="acciones_venta">
-                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_cancel textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular</a>
-                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_save textcenter" id="btn_facturar_venta" style="display:none;"><i class="far fa-edit"></i>Procesar</a>
+                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_cancel textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i> Anular</a>
+                    <a ondragstart="dragstart_handler(event);" href="#" class="btn_save textcenter" id="btn_facturar_venta" style="display:none;"><i class="far fa-edit"></i> Procesar</a>
                     </div>    
                 </div>
             </div>
@@ -107,10 +107,10 @@
                     <th width="100px">Código</th>
                     <th>Descripción</th>
                     <th>Existencia</th>
-                    <th width="100px">Cantidad</th>
+                    <th>Cantidad</th>
                     <th class="textrigth">Precio</th>
                     <th class="textrigth">Precio Total</th>
-                    <th>Acción</th>
+                    <th style="width: 120px;">Acción</th>
                 </tr>
                 <tr>
                     <td><input type="number" min="0" name="txt_cod_producto" id="txt_cod_producto"></td>
@@ -119,7 +119,7 @@
                     <td><input type="number" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
                     <td id="txt_precio" class="textright">0.00</td>
                     <td id="txt_precio_total" class="textright">0.00</td>
-                    <td><a ondragstart="dragstart_handler(event);" href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i> Agregar</a></td>
+                    <td style="width: 100px;"><a ondragstart="dragstart_handler(event);" href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i> Agregar</a></td>
                 </tr> 
                 <tr>
                     <th>Código</th>
