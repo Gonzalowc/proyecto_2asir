@@ -30,7 +30,7 @@ html +='           </strong>';
 }
 html +='       </h3>';
 html +='       <div class="mc-content">';
-html +='           <div class="img-container">';
+html +='           <div style="overflow: hidden; height: 250px;" class="img-container">';
 html +='               <img class="img-responsive" src="' + rutaIMG + results[i].foto + '">';
 html +='           </div>';
 $(document).ready(function(){  
@@ -38,11 +38,11 @@ $(document).ready(function(){
           $(this).attr('src', './img/uploads/img_producto.png');
     });
 });
-html +='           <div class="mc-description"><strong>' + results[i].precio + '</strong> <i class="fas fa-euro-sign"></i><br>';
+html +='           <div style="overflow: hidden; height: 100px;" class="mc-description"><strong>' + results[i].precio + '</strong> <i class="fas fa-euro-sign"></i><br>';
 html +=             results[i].descripcion;
 html +='           </div>';
 html +='       </div>';
-html +='       <div class="mc-footer">';
+html +='       <div style="overflow: hidden; height: 50px;" class="mc-footer">';
 html +='           <h4>';
 html +='               Codigo: <strong>'+ results[i].codproducto+'</strong>';
 html +='           </h4>';
@@ -85,3 +85,4 @@ $(function() {
         }
     });
 });
+grid-item
