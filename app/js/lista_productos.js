@@ -296,3 +296,16 @@ function click() {
 }
 setTimeout("click()", 500);
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+function dragstart_handler(ev) {
+  console.log(
+    "dragStart: dropEffect = " +
+      ev.dataTransfer.dropEffect +
+      " ; effectAllowed = " +
+      ev.dataTransfer.effectAllowed
+  );
+
+  // Add this element's id to the drag payload so the drop handler will
+  // know which element to add to its tree
+  ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.effectAllowed = "move";
+}
