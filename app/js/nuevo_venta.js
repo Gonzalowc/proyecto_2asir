@@ -280,15 +280,6 @@ function del_product_detalle(correlativo){
                 var info = JSON.parse(response);
                 $("#detalle_venta").html(info.detalle);
                 $("#detalle_totales").html(info.totales);
-                /* $("#txt_cod_producto").val('');
-                $("#txt_descripcion").html('-');
-                $("#txt_existencia").html('-');
-                $("#txt_cant_producto").val('0');
-                $("#txt_precio").html('0.00');
-                $("#txt_precio_total").html('0.00');
-
-                $("#txt_cant_producto").attr('disabled','disabled');
-                $("#add_product_venta").slideUp(); */
             }else{
                 $("#detalle_venta").html('');
                 $("#detalle_totales").html('');

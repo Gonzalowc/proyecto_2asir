@@ -19,18 +19,22 @@ connection.query($queryString, (err, results) => {
   if(i == 2){
     i = 1;
   }
+  if(i == results.length){
+    i = results.length -1;
+  }
   let rol = "";
   for (i; i < results.length; i++) {
-    rol +=
+    console.log("hola");
+     rol +=
       '<option value="' +
       results[i].idrol +
       '">' +
       results[i].rol +
-      "</option>";
+      "</option>";     
   }
+  console.log(results.length);
   document.getElementById("rol").innerHTML = rol;
 });
-
 //=================Registrar==============================
 document.querySelector("#submit").onclick = function (e) {
   e.preventDefault();
@@ -44,6 +48,9 @@ document.querySelector("#submit").onclick = function (e) {
   var codePass = md5(clave);
   document.getElementById("clave").value = "";
   var rol = document.getElementById("rol").value;
+  if(rol == ""){
+    rol = 5;
+  }
   var jefe = sessionStorage.getItem("idusuario");
   const alertRegister = document.getElementById("alert");
   var validateEmail = fntEmailValidate(correo);

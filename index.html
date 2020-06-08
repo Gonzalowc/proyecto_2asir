@@ -32,42 +32,42 @@
             </div>
             <div id="divPassword" class="">
                 <div class="divEmailUser">
-                    <p><button type="button" id="btnPrev"><i class="fas fa-arrow-left"></i></button><span id="spanEmail">aaa@aaa.aa</span></p>
+                    <p><button type="button" tabindex="-1" id="btnPrev"><i class="fas fa-arrow-left"></i></button><span id="spanEmail">aaa@aaa.aa</span></p>
                 </div>
                 <h2>Escribir contraseña</h2>
                 <div id="alertPass" style="display: none;"></div>
-                <input type="password" id="passUser" name="passUser" placeholder="Contraseña" required>
-                <a ondragstart="dragstart_handler(event);" href="#" id="linkRecoveryPass">¿Olvidó su contraseña?</a>
+                <input type="password" id="passUser" tabindex="-1" name="passUser" placeholder="Contraseña" required>
+                <a ondragstart="dragstart_handler(event);" tabindex="-1" href="#" id="linkRecoveryPass" style="display: none;">¿Olvidó su contraseña?</a>
                 <div class="divButton">
-                    <button type="button" id="btnLogin" href="" class="btnFormLogin">Iniciar sesión</button>
+                    <button type="button" id="btnLogin" tabindex="-1" href="" class="btnFormLogin">Iniciar sesión</button>
                 </div>
             </div>
             <div id="divRegister" class="">
                 <h2>Crear cuenta</h2>
                 <div id="alertRegister" style="display: none;"></div>
                 <div>
-                    <input type="text" id="nameUser" name="nameUser" value="" placeholder="Nombre" required>
+                    <input type="text" tabindex="-1" id="nameUser" name="nameUser" value="" placeholder="Nombre" required>
                 </div>
                 <div>
-                    <input type="email" id="emailNewUser" name="EmailNewUser" value="" placeholder="Correo electrónico" required>
+                    <input type="email" tabindex="-1" id="emailNewUser" name="EmailNewUser" value="" placeholder="Correo electrónico" required>
                 </div>
                 <div>
-                    <input type="password" id="passNewUser" name="passNewUser" value="" placeholder="Contraseña" required>
+                    <input type="password" tabindex="-1" id="passNewUser" name="passNewUser" value="" placeholder="Contraseña" required>
                 </div>
                 <div class="divBtnAction">
-                    <button type="button" id="btnNextEmail" class="btnFormLogin">Atras</button>
-                    <button type="button" id="btnRegister" class="btnFormLogin">Registrarse</button>
+                    <button type="button" tabindex="-1" id="btnNextEmail" class="btnFormLogin">Atras</button>
+                    <button type="button" tabindex="-1" id="btnRegister" class="btnFormLogin">Registrarse</button>
                 </div>
             </div>
-            <div id="divRecoveryPass" class="">
+            <div id="divRecoveryPass" class="" style="display: none;">
                 <h2>Recuperar contraseña</h2>
                 <p>Se te enviará un correo electrónico con instrucciones para recuperar tu cuenta.</p>
                 <br>
                 <div id="alertSendEmail" style="display: block;"></div>
-                <input type="email" id="sendEmail" name="sendEmail" placeholder="Correo electrónico">
+                <input type="email" tabindex="-1" id="sendEmail" name="sendEmail" placeholder="Correo electrónico">
                 <div class="divBtnAction">
-                    <button type="button" id="btnCancelar" class="btnFormLogin">Cancelar</button>
-                    <button type="button" id="btnSendEmail" class="btnFormLogin">Enviar</button>
+                    <button type="button" tabindex="-1" id="btnCancelar" class="btnFormLogin">Cancelar</button>
+                    <button type="button" tabindex="-1" id="btnSendEmail" class="btnFormLogin">Enviar</button>
                 </div>
             </div>
         </div>

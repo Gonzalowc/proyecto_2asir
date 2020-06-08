@@ -38,40 +38,15 @@ document.querySelector(".btn_save").onclick = function (e) {
             return console.log("An error ocurred with the query MySQL", err);
           }
           console.log("Usuario añadido MySQL");
-          //===========================consulta registrar=========================SQLITE3=================
-          /* var db = new sqlite3.Database(
-            "./app/db/facture.db",
-            sqlite3.OPEN_READWRITE,
-            (err) => {
-              if (err) {
-                console.error(err.message);
-              }
-              db.serialize(() => {
-                db.each(
-                  `INSERT INTO usuario (nombre, correo, usuario,Jefe, clave,rol) VALUES (?,?,?,?,?,?)`,
-                  [name, correo, usuario, jefe, codePass, rol],
-                  (err) => {
-                    if (err) {
-                      return console.error(err.message);
-                    }
-                  }
-                );
-                console.log("Usuario añadido SQlite3");
-              });
-            }
-          ); */
+
         }
       );
-      /* connection.end(); */
-      //=====================================================================
     }
   };
   
   //validate Email
   function fntEmailValidate(email) {
-    const stringEmail = new RegExp(
-      /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$/
-    );
+    const stringEmail = new RegExp("^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$");
     if (stringEmail.test(email) == false) {
       return false;
     } else {
