@@ -39,27 +39,24 @@ connection.query($queryString, (err, results) => {
 document.querySelector("#submit").onclick = function (e) {
   e.preventDefault();
   var name = document.getElementById("nombre").value;
-  document.getElementById("nombre").value = "";
+  
   var correo = document.getElementById("correo").value;
-  document.getElementById("correo").value = "";
+  var validateEmail = fntEmailValidate(correo);
+  
   var usuario = document.getElementById("usuario").value;
-  document.getElementById("usuario").value = "";
+  
   var clave = document.getElementById("clave").value;
   var codePass = md5(clave);
-  document.getElementById("clave").value = "";
+  
   var rol = document.getElementById("rol").value;
-  if(rol == ""){
-    rol = 5;
-  }
   var jefe = sessionStorage.getItem("idusuario");
   const alertRegister = document.getElementById("alert");
-  var validateEmail = fntEmailValidate(correo);
   var datenow = Date.now();
   if (name == "") {
     var usuario = "user" + datenow;
   }
 
-  if (name == "" || correo == "" || codePass == "" || !validateEmail) {
+  if (name == "" || (correo == "" || !validateEmail ) || codePass == "" ) {
     alertRegister.innerHTML =
       '<b><p style="color: red;">Todos los datos son obligatorios</p></b>';
     alertRegister.style.display = "block";
@@ -76,10 +73,16 @@ document.querySelector("#submit").onclick = function (e) {
 
     connection.query(
       $queryString,
-      [name, correo, usuario, jefe, codePass, rol],
+      [name, validateEmail, usuario, jefe, codePass, rol],
       (err, rows, fields) => {
         if (err) {
           return console.log("An error ocurred with the query MySQL", err);
+        }
+        if(rows){
+          document.getElementById("nombre").value = "";
+          document.getElementById("correo").value = "";
+          document.getElementById("usuario").value = "";
+          document.getElementById("clave").value = "";
         }
         console.log("Usuario añadido MySQL");
  
@@ -90,9 +93,7 @@ document.querySelector("#submit").onclick = function (e) {
 
 //validate Email
 function fntEmailValidate(email) {
-  const stringEmail = new RegExp(
-    /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$/
-  );
+  const stringEmail = new RegExp("^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$");
   if (stringEmail.test(email) == false) {
     return false;
   } else {

@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const strPassUser = document.querySelector("#passUser").value;
   const alertPass = document.querySelector("#alertPass");
   var codePass = md5(strPassUser);
-  //==localstorage====
+  //==sessionStorage====
   function guardar_sessionStorage() {
     var user = strEmailUser;
     sessionStorage.setItem("correo", user);

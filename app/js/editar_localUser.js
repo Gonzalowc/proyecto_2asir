@@ -64,9 +64,15 @@ $(".btnPerfil").click(function () {
 
   $(".btn_save").click(function () {
    //::::::::::::::::::::::::::::::::::::::::  
-const inputFile = document.querySelector("#inputFile");
-const fotoP = sessionStorage.getItem("img");
+    const inputFile = document.querySelector("#inputFile");
+    const fotoP = sessionStorage.getItem("img");
     if (inputFile.files.length > 0) {
+      var type = inputFile.type;
+            if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png')
+            {
+                alert("El archivo no es válido"); // Tipo de archivo no válido.                       
+                return false;
+            }
         let formData = new FormData();
         formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
         fetch(Uindex+"index.php?id="+idusu+"&fotoP="+fotoP, {
@@ -91,7 +97,9 @@ $(".btnSave").click(function () {
   var usuario = document.getElementById("usuario").value;
   var correo = document.getElementById("correo").value;
   var passwd = md5(document.getElementById("passwd").value);
-  if (passwd == "") {
+  
+  if (passwd == "d41d8cd98f00b204e9800998ecf8427e" || document.getElementById("passwd").value == "") {
+    console.log("Hola");
     $queryString =
       "UPDATE usuario set nombre = ?, usuario = ?, correo = ? where idusuario= ?";
     connection.query(
@@ -106,7 +114,8 @@ $(".btnSave").click(function () {
         }
       }
     );
-  } else {
+  } 
+  else {
     var recuperar = "";
     recuperar += '<section id="containerEdit" >';
     recuperar += '   <div class="alertModal">';

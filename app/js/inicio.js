@@ -22,6 +22,7 @@ function dragstart_handler(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
   ev.dataTransfer.effectAllowed = "move";
 }
+//panel de control
 var idusu = sessionStorage.getItem("idusuario");
 $queryString = "call dataDashboard(?)";
 connection.query($queryString, [idusu], (err, results) => {
@@ -45,6 +46,7 @@ connection.query($queryString, [idusu], (err, results) => {
     document.getElementById("intVHI").innerHTML = results[0][0].ventasHI;
   }
 });
+//quitar enlaces a roles no autorizados.
 var idrol = sessionStorage.getItem("idrol");
 $queryString = "select * from rol where idrol = ?";
 connection.query($queryString, [idrol], (err, results) => {
@@ -71,20 +73,24 @@ connection.query($queryString, [idrol], (err, results) => {
     }
   }
 });
+//Datos del usuario
 $queryString =
   "select u.nombre, u.correo, u.usuario, r.rol from usuario u join rol r on u.rol = r.idrol where idusuario = ?";
 connection.query($queryString, [idusu], (err, results) => {
   if (err) {
     return console.log("An error ocurred with the query", err);
   }
+  //quitar botón actualizar roles para noSuperAdmin
   if (results) {
     if(results[0].rol != "SuperAdmin"){
       document.getElementById("Role").style.display = "none";
     }
+  //Asignar valores usuario
     document.getElementById("usrNombre").innerHTML = results[0].nombre;
     document.getElementById("usrEmail").innerHTML = results[0].correo;
     document.getElementById("usrRol").innerHTML = results[0].rol;
     document.getElementById("usrUsuario").innerHTML = results[0].usuario;
+  //bloquear input para noSuperAdmin
     if (results[0].rol != "SuperAdmin") {
       $("#txtNIF").attr("disabled", "disabled");
       $("#txtNombre").attr("disabled", "disabled");
@@ -97,7 +103,7 @@ connection.query($queryString, [idusu], (err, results) => {
     }
   }
 });
-
+//rellenar input con valores de la DB
 $queryString = "select * from configuracion ";
 connection.query($queryString, (err, results) => {
   if (err) {
@@ -114,7 +120,7 @@ connection.query($queryString, (err, results) => {
     document.getElementById("intIVA").value = results[0].iva;
   }
 });
-
+//Comfiguración empresa valores
 $("#config").click(function (e) {
   e.preventDefault();
   var action = document.getElementById("action").value;
@@ -126,18 +132,15 @@ $("#config").click(function (e) {
   var strDirEmp = document.getElementById("txtDireccion").value;
   var intIVA = document.getElementById("intIVA").value;
 
-  if (
-    intNIF == "" ||
-    strNombreEmp == "" ||
-    intTelEmp == "" ||
-    strDirEmp == "" ||
-    strEmailEmp == ""
+  if (intNIF == "" || strNombreEmp == "" || intTelEmp == "" ||
+    strDirEmp == "" || strEmailEmp == ""
   ) {
     $(".alertFormEmpresa").html(
       "<p style='color: red;'> Todos los campos son obligatorios.</p>"
     );
     return false;
   }
+  //Envío de valores para guardar desde el servidor
   $.ajax({
     url: ruta + "index.php",
     type: "POST",
@@ -172,7 +175,7 @@ $("#config").click(function (e) {
     error: function (error) {},
   });
 });
-
+// Listado roles
 $queryString = "SELECT idrol, rol FROM rol ORDER BY idrol ASC";
 
 connection.query($queryString, (err, results) => {
@@ -193,7 +196,7 @@ connection.query($queryString, (err, results) => {
     document.getElementById("roles").innerHTML = rol;
   }
 });
-
+//guardar datos roles
 $("#Role").click(function (e) {
   e.preventDefault();
   var rol = document.getElementById("roles").value;
@@ -331,9 +334,9 @@ $("#Role").click(function (e) {
           }
           if (results) {
             $(".alertFormRol").html(
-              "<b><p style='color: green;' class='msg_save'>Rol " +
+              "<b><p style='color: green;' class='msg_save'>Rol <b>" +
                 results[0].rol +
-                " Correctamente</p></b>"
+                "</b> Correctamente</p></b>"
             );
             document.getElementById("alertRol").style.display = "block";
           }

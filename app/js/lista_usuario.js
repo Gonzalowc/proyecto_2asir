@@ -74,33 +74,23 @@ if(sessionStorage.getItem("rol")== "SuperAdmin"){
       list_table += '<td>'+ results[i].Jefe +'</td>';
       }
     if(sessionStorage["idrol"]< results[i].idrol || sessionStorage["idrol"]< 3){
-    if(sessionStorage["idrol"] < results[i].idrol ||  sessionStorage["idrol"]< 3){
-      list_table +=
-      '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick();" class="link_edit" id="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';
-    }else{
-      list_table += '<td>';
-    }
-    if(results[i].rol == "SuperAdmin"){
-      list_table +='';
-    }else{
-      list_table +=
-      '| <a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
-    }
-       }else{
-      list_table +='<td>';
-    }
-    list_table += "</td>";
-    list_table += "</tr>";
+      if(sessionStorage["idrol"] < results[i].idrol ||  sessionStorage["idrol"]< 3){
+        list_table +=
+        '<td><a ondragstart="dragstart_handler(event);" onclick="timeoutclick();" class="link_edit" id="link_edit" href="#"><i class="far fa-edit"></i> Editar</a> ';
+      }else{      list_table += '<td>';    }
+      if(results[i].rol == "SuperAdmin"){      list_table +='';  }
+      else{ list_table +=
+        '| <a ondragstart="dragstart_handler(event);" onclick="timeoutclick()" class="link_delete" href="#"><i class="far fa-trash-alt"></i> Borrar</a>';
+      }
+    }else{  list_table +='<td>'; }
+    list_table += "</td>";  list_table += "</tr>";
   }
-  list_table += "</tbody>";
-  list_table += "</table>";
+  list_table += "</tbody>";  list_table += "</table>";
   document.getElementById("table_date").innerHTML = list_table;
 });
 
-if (sessionStorage.getItem("rol") === "SuperAdmin") {
-}
 
-//buscador+paginador
+//buscador
 function buscador() {
   $(document).ready(function () {
     var consulta = $("#tblDatos").DataTable();
@@ -110,7 +100,7 @@ function buscador() {
   });
 }
 setTimeout("buscador()", 500);
-
+//Paginador
 var table = "#tblDatos";
 $("#maxRows").on("change", function () {
   $(".pagination").html();
@@ -131,10 +121,7 @@ $("#maxRows").on("change", function () {
     for (var i = 1; i < pagenum; i++) {
       $(".pagination")
         .append(
-          '<li data-page="' +
-            i +
-            '"><span>' +
-            i++ +
+          '<li data-page="' + i + '"><span>' + i++ +
             '<span class="sr-only">(current)</span></span></li>'
         )
         .show();
@@ -210,19 +197,12 @@ function click() {
           return console.log("An error ocurred with the query", err);
         }
         var i = sessionStorage.getItem("idrol");
-        if(i == 1){
-          i=0;
-        }
-        if(i == 2){
-          i = 1;
-        }
+        if(i == 1){   i=0;     }
+        if(i == 2){   i = 1;   }
         for (i; i < results.length; i++) {
           roles +=
-            '<option value="' +
-            results[i].idrol +
-            '">' +
-            results[i].rol +
-            "</option>";
+            '<option value="' + results[i].idrol + '">' +
+            results[i].rol + "</option>";
         }
         document.getElementById("roles").innerHTML = roles;
       });
@@ -285,7 +265,6 @@ function click() {
       var Usuario = $(this).parents("tr").find("td")[2].innerHTML;
       var Correo = $(this).parents("tr").find("td")[3].innerHTML;
       var recuperar = "";
-      var roles = "";
 
       recuperar += '<section id="containerEdit">';
       recuperar += '<div class="alertModal">';
