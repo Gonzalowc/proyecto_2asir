@@ -1,0 +1,13 @@
+
+{
+    "execute-terminal-linux": "npm install -g electron-installer-debian",
+    "dest": "release-builds/",
+    "icon": "build/icon.png",
+    "categories": [
+        "Utility"
+    ],
+    "lintianOverrides": [
+        "changelog-file-missing-in-native-package"
+    ] 
+}
+

@@ -10,7 +10,11 @@
     "dist": "build",
     "postinstall": "install-app-deps",
     "package-win": "electron-packager . proyecto --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Project Facturation ASIR\"",
-    "create-installer-win": "node installer/windows/createinstaller.js"
+    "create-installer-win": "node installer/windows/createinstaller.js",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --prune=true --out=release-builds",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ proyecto\\ app-darwin-x64/Electron\\ proyecto\\  app.app proyecto-ASIR",
+    "package-linux": "electron-packager .  proyecto --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=release-builds",
+    "create-debian-installer": "electron-installer-debian --src release-builds/proyecto-linux-x64/ --arch amd64 --config debian.json"
   },
   "author": "Gonzalo Waack Carneado",
   "license": "ISC",
