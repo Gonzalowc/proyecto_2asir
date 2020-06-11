@@ -156,9 +156,12 @@ function click() {
       var Nombre = $(this).parents("tr").find("td")[1].innerHTML;
       var DNI = $(this).parents("tr").find("td")[2].innerHTML;
       var telefono = $(this).parents("tr").find("td")[3].innerHTML;
-      var correo = $(this).parents("tr").find("td")[4].innerHTML;
-      var jefe = $(this).parents("tr").find("td")[5].innerHTML;
-      
+      var correo = $(this).parents("tr").find("td")[5].innerHTML;
+      var jefe = $(this).parents("tr").find("td")[6].innerHTML;
+      if(sessionStorage.getItem("rol") != "SuperAdmin"){
+        var correo = $(this).parents("tr").find("td")[5].innerHTML;
+       }
+
       var recuperar = "";
       recuperar += '<section id="containerEdit">';
       recuperar += '	 <div id="bodyEdit">';

@@ -1,5 +1,5 @@
 //=================Registrar==============================
-  document.querySelector(".btn_save").onclick = function (e) {
+document.querySelector(".btn_save").onclick = function (e) {
     e.preventDefault();
     var DNI = document.getElementById("dni").value;
     $queryString =
@@ -18,7 +18,7 @@
             return;
           }else{
             
-var name = document.getElementById("nombre").value;    
+    var name = document.getElementById("nombre").value;    
     var telefono = document.getElementById("telefono").value;
     var direccion = document.getElementById("direccion").value;
     var email = document.getElementById("email").value;
@@ -54,15 +54,12 @@ var name = document.getElementById("nombre").value;
           }
           console.log("Cliente añadido MySQL");
 
-        }
-      );
-    }
-  }        
-});
-
-    
-    
-  };
+          }
+        );
+      }
+    }        
+  });    
+};
   
   //validate Email
   function fntEmailValidate(email) {
