@@ -1,11 +1,28 @@
 //=================Registrar==============================
   document.querySelector(".btn_save").onclick = function (e) {
     e.preventDefault();
-    var name = document.getElementById("nombre").value;    
+    var DNI = document.getElementById("dni").value;
+    $queryString =
+        "select * from cliente where DNI = ?";
+  
+        connection.query($queryString,[DNI] ,(err, results) => {
+          console.log(results);
+          if (err) {
+            return console.log("An error ocurred with the query", err);
+          }
+          if(results.length>0){
+            var alertRegister = document.getElementById("alert");
+            alertRegister.innerHTML =
+        '<b><p style="color: red;">DNI ya registrado</p></b>';
+      alertRegister.style.display = "block";
+            return;
+          }else{
+            
+var name = document.getElementById("nombre").value;    
     var telefono = document.getElementById("telefono").value;
     var direccion = document.getElementById("direccion").value;
     var email = document.getElementById("email").value;
-    var DNI = document.getElementById("dni").value;
+    
     var alertRegister = document.getElementById("alert");
     var idusu = sessionStorage.getItem("idusuario");
     var validateEmail = fntEmailValidate(email); 
@@ -35,11 +52,16 @@
           if (err) {
             return console.log("An error ocurred with the query MySQL", err);
           }
-          console.log("Usuario añadido MySQL");
+          console.log("Cliente añadido MySQL");
 
         }
       );
-   }
+    }
+  }        
+});
+
+    
+    
   };
   
   //validate Email
