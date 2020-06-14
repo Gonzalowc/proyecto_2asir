@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 //===================================================
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 //var ip = "localhost";
 var connection = mysql.createConnection({
   host: ip,
@@ -247,6 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }))
 });
+
+//=====================================================================
+
+    
 //validate Email
 function fntEmailValidate(email) {
   const stringEmail = new RegExp("^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$");

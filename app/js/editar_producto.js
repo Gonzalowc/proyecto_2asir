@@ -1,4 +1,4 @@
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 var Uindex = "http://"+ ip +"/proyecto/";
 var dirImg = "http://"+ ip +"/proyecto/img/products/"
 var ID = localStorage.getItem("idproductChange");

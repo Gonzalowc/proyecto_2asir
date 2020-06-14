@@ -1,14 +1,27 @@
 var md5 = require("md5");
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 //var ip = "localhost";
 var Uri = "http://"+ ip+"/proyecto/";
 var vendedor = sessionStorage.getItem("nombre");
-
+document.getElementById("usuario_id").value = usuario_id;
+var idrol = sessionStorage.getItem("idrol")
+    $queryString = "select * from rol where idrol = ?";
+    connection.query($queryString, [idrol], (err, results) => {
+    if(err){
+      return console.log("An error ocurred with the query", err);
+    }
+        if(results){
+          html =""
+          console.log(results);
+            if(results[0].nuevoCli == 0){
+              document.getElementById("new").style.display = "none";
+            }
+        }
+    });
 document.getElementById("vendedor").innerHTML = vendedor;
 $(document).ready(function(){
 var usuario_id = sessionStorage.getItem("idusuario");
 
-document.getElementById("usuario_id").value = usuario_id;
 
 $('.btn_new_cliente').click(function(e){
     e.preventDefault();
@@ -18,6 +31,7 @@ $('.btn_new_cliente').click(function(e){
     $('#mail_cliente').removeAttr('disabled');
     $('#div_registro_cliente').slideDown();
     });
+    
 //buscar cliente en ventas
 
     $('#dni_cliente').keyup(function(e){

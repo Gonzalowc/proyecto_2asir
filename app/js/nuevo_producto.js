@@ -1,4 +1,4 @@
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 //var ip ="localhost";
 var Uindex = "http://"+ip+"/proyecto/";
 //=================IMAGEN
@@ -115,16 +115,19 @@ document.querySelector(".btn_save").onclick = function (e) {
             '<b><p style="color: green;">Producto añadido Correctamente</p></b>';
           alertRegister.style.display = "block";
           document.getElementById("description").value = "";
-          document.getElementById("proveedor").value = "";
           document.getElementById("producto").value = "";
           document.getElementById("precio").value = "";
           document.getElementById("cantidad").value = "";
           document.getElementById("foto").value = "";
+          $('#foto').val('');
+          $(".delPhoto").addClass('notBlock');
+          $("#img").remove();
         }
       );
 
     }
   };
+
   function dragstart_handler(ev) {
     console.log(
       "dragStart: dropEffect = " +

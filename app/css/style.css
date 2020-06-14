@@ -232,6 +232,7 @@ select {
 .alert p {
   padding: 10px;
 }
+
 /*==================LISTA USUARIOS=====================*/
 #container h1 {
   font-size: 35px;
@@ -1060,4 +1061,7 @@ font-weight: bolder;
     input[type=number]::-webkit-outer-spin-button { 
       -webkit-appearance: none; 
       margin: 0; 
+    }
+    .IPContent{
+      z-index: 10;
     }

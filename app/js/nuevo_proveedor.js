@@ -37,7 +37,7 @@ document.querySelector(".btn_save").onclick = function (e) {
           if (err) {
             return console.log("An error ocurred with the query MySQL", err);
           }
-          console.log("Usuario añadido MySQL");
+          console.log("Proveedor añadido MySQL");
 
         }
       );

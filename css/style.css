@@ -47,7 +47,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.IPContent{
+  margin-top: 30%;
+  margin-left: 15%;
+  margin-right: 15%;
+  
+}
 #containerLogin {
   width: 100%;
   height: 100vh;

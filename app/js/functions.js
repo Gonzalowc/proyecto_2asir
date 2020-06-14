@@ -8,7 +8,7 @@ var md5 = require("md5");
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 //var ip = "localhost";
 var Uimg ="http://"+ip+"/proyecto/img/profiles/";
 var connection = mysql.createConnection({

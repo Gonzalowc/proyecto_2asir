@@ -1,7 +1,7 @@
 //require jquery datatable
 var $ = require("jquery");
 var dt = require("datatables.net")(window, $);
-var ip = "79.145.85.205";
+var ip = "2.137.118.66";
 //var ip = "localhost";
 //Paginador
 var rol = sessionStorage.getItem("idrol");
@@ -271,7 +271,6 @@ function click() {
             var cantidad = document.getElementById("existencia").value;
             $queryString =
               "CALL actualizar_precio_producto(?,?,?)";
-
             connection.query(
               $queryString,
               [cantidad,precio,ID],

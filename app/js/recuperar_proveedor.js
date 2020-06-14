@@ -33,7 +33,7 @@ if (sessionStorage.getItem("rol") == "SuperAdmin") {
   vendedor = 0;
 } else {
   $queryString =
-  "SELECT codproveedor, proveedor, contacto, telefono, direccion, email FROM proveedor WHERE estatus=0 and usuario_id = ? ORDER BY codproveedor";
+  "SELECT codproveedor, proveedor, contacto, telefono, direccion, email FROM proveedor WHERE estatus=0 ORDER BY codproveedor";
 }
 connection.query($queryString, [vendedor], (err, results) => {
   if (err) {
