@@ -3,7 +3,6 @@ var ip = "2.137.118.66";
 //var ip = "localhost";
 var Uri = "http://"+ ip+"/proyecto/";
 var vendedor = sessionStorage.getItem("nombre");
-document.getElementById("usuario_id").value = usuario_id;
 var idrol = sessionStorage.getItem("idrol")
     $queryString = "select * from rol where idrol = ?";
     connection.query($queryString, [idrol], (err, results) => {
@@ -20,7 +19,7 @@ var idrol = sessionStorage.getItem("idrol")
     });
 document.getElementById("vendedor").innerHTML = vendedor;
 $(document).ready(function(){
-var usuario_id = sessionStorage.getItem("idusuario");
+
 
 
 $('.btn_new_cliente').click(function(e){
@@ -87,7 +86,7 @@ $('.btn_new_cliente').click(function(e){
         e.preventDefault();
         var usuario_id = sessionStorage.getItem("idusuario");
         $.ajax({
-            url: Uri+'ajax_ventas.php',
+            url: Uri+'ajax_ventas.php?usuario_id='+usuario_id,
             type: "POST",
             async: true,
             data: $('#form_new_cliente_venta').serialize(),

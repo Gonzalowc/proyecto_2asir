@@ -64,17 +64,20 @@ $(".btnPerfil").click(function () {
 
   $(".btn_save").click(function () {
    //::::::::::::::::::::::::::::::::::::::::  
-    const inputFile = document.querySelector("#inputFile");
-    const fotoP = sessionStorage.getItem("img");
-    if (inputFile.files.length > 0) {
-      var type = inputFile.type;
+    var inputFile = document.getElementById("inputFile").files;
+    var input = document.getElementById("inputFile").files;
+    console.log(input);
+    var fotoP = sessionStorage.getItem("img");
+    if (inputFile) {
+      var type = inputFile[0].type;
+      console.log(type);
             if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png')
             {
                 alert("El archivo no es válido"); // Tipo de archivo no válido.                       
                 return false;
             }
         let formData = new FormData();
-        formData.append("archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento 
+        formData.append("archivo", input[0]); // En la posición 0; es decir, el primer elemento 
         fetch(Uindex+"index.php?id="+idusu+"&fotoP="+fotoP, {
             method: 'POST',
             body: formData,
