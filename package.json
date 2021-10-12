@@ -55,7 +55,7 @@
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
-    "electron": "^8.3.1",
+    "electron": "^11.5.0",
     "electron-builder": "^22.6.0",
     "electron-packager": "^14.2.1",
     "electron-rebuild": "^1.10.1",
